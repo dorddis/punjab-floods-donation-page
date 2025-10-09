@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rebuild Punjab - Help 350,000 Families Come Home | Global Sikhs</title>
-    <meta name="description" content="Help rebuild homes for 350,000 families affected by Punjab's worst floods in 40 years. Every ₹500 provides 50 bricks. Donations matched 2x until Sunday.">
+    <title>Rebuild Punjab - Help 384,000 People Come Home | Global Sikhs</title>
+    <meta name="description" content="Help rebuild homes for 384,000 people affected by Punjab's worst floods in 40 years. Every ₹500 provides 50 bricks. Donations matched 2x until Sunday.">
     <link rel="icon" type="image/png" href="assets/images/global-sikhs-logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
@@ -227,6 +227,73 @@
             width: 24px;
             border-radius: 4px;
         }
+
+        /* Glassmorphic Animated Gradient Backgrounds */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Custom amount section animation */
+        .custom-amount-collapsed {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease-out, margin 0.3s ease-out;
+            margin-bottom: 0 !important;
+        }
+
+        .custom-amount-expanded {
+            max-height: 200px;
+            opacity: 1;
+            transition: max-height 0.4s ease-in, opacity 0.3s ease-in 0.1s, margin 0.3s ease-in;
+        }
+
+        .custom-amount-content {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease-out 0.1s;
+        }
+
+        .custom-amount-expanded .custom-amount-content {
+            transform: translateY(0);
+        }
+
+        /* True glassmorphism: semi-transparent gradients + backdrop blur */
+        .glass-gradient-amber {
+            background: linear-gradient(-45deg,
+                rgba(217, 119, 6, 0.75),
+                rgba(194, 65, 12, 0.80),
+                rgba(154, 52, 18, 0.85),
+                rgba(124, 45, 18, 0.90));
+            background-size: 400% 400%;
+            animation: gradientShift 18s ease infinite;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .glass-gradient-premium {
+            background: linear-gradient(-45deg,
+                rgba(109, 40, 217, 0.75),
+                rgba(91, 33, 182, 0.80),
+                rgba(76, 29, 149, 0.85),
+                rgba(6, 95, 70, 0.80),
+                rgba(4, 120, 87, 0.85));
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Text shadow for glassmorphic cards */
+        .glass-text-shadow {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Subtle text shadow for regular cards */
+        .subtle-text-shadow {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        }
     </style>
 </head>
 
@@ -270,7 +337,7 @@
                     <i class="fas fa-exclamation-triangle"></i> URGENT
                 </div>
                 <h1 class="font-display text-4xl md:text-6xl font-bold leading-tight mb-4">
-                    350,000 Families<br/>Still Without Homes
+                    384,000 People<br/>Still Without Homes
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-200 max-w-2xl leading-relaxed">
                     One month after the worst flood in 40 years. Your donation today becomes a family's shelter tomorrow.
@@ -414,42 +481,76 @@
                 <p class="text-lg text-gray-600">Every contribution helps rebuild lives</p>
             </div>
 
-            <!-- Donation Amount Selection -->
+            <!-- Donation Amount Selection - All 6 Cards Together -->
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-                <button onclick="selectAmount(500)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 transition-all">
-                    <div class="text-2xl font-bold text-gray-900">₹500</div>
-                    <div class="text-sm text-gray-600">50 Bricks</div>
+                <!-- ₹500 -->
+                <button onclick="selectAmount(500)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 md:p-5 transition-all text-left">
+                    <div class="text-xl md:text-2xl font-bold text-gray-900 subtle-text-shadow mb-1">₹500</div>
+                    <div class="text-sm font-medium text-gray-700 subtle-text-shadow">50 Bricks</div>
                 </button>
-                <button onclick="selectAmount(1000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 transition-all">
-                    <div class="text-2xl font-bold text-gray-900">₹1,000</div>
-                    <div class="text-sm text-gray-600">Foundation Support</div>
+
+                <!-- ₹2,500 - MOST POPULAR -->
+                <button onclick="selectAmount(2500)" class="donation-btn relative border-2 border-saffron bg-saffron/10 rounded-xl p-4 md:p-5 transition-all text-left hover:shadow-lg">
+                    <div class="absolute -top-2 -right-2">
+                        <span class="bg-saffron text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">⭐ POPULAR</span>
+                    </div>
+                    <div class="text-xl md:text-2xl font-bold text-saffron subtle-text-shadow mb-1">₹2,500</div>
+                    <div class="text-sm font-medium text-gray-700 subtle-text-shadow mb-1">Foundation Materials</div>
+                    <div class="text-xs text-gray-600 subtle-text-shadow hidden md:block">~200 bricks + 4 cement bags + 2 steel rods</div>
                 </button>
-                <button onclick="selectAmount(2500)" class="donation-btn border-2 border-saffron bg-saffron/10 rounded-xl p-4 transition-all">
-                    <div class="text-2xl font-bold text-saffron">₹2,500</div>
-                    <div class="text-xs text-saffron font-medium">MOST POPULAR</div>
+
+                <!-- ₹10,000 -->
+                <button onclick="selectAmount(10000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 md:p-5 transition-all text-left">
+                    <div class="text-xl md:text-2xl font-bold text-gray-900 subtle-text-shadow mb-1">₹10,000</div>
+                    <div class="text-sm font-medium text-gray-700 subtle-text-shadow mb-1">Complete Room</div>
+                    <div class="text-xs text-gray-600 subtle-text-shadow hidden md:block">~800 bricks + 15 cement bags + full steel</div>
                 </button>
-                <button onclick="selectAmount(10000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 transition-all">
-                    <div class="text-2xl font-bold text-gray-900">₹10,000</div>
-                    <div class="text-sm text-gray-600">Complete Room</div>
+
+                <!-- ₹50,000 -->
+                <button onclick="selectAmount(50000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 md:p-5 transition-all text-left">
+                    <div class="text-xl md:text-2xl font-bold text-gray-900 subtle-text-shadow mb-1">₹50,000</div>
+                    <div class="text-sm font-medium text-gray-700 subtle-text-shadow mb-1">Multiple Rooms</div>
+                    <div class="text-xs text-gray-600 subtle-text-shadow hidden md:block">2-3 complete rooms with materials</div>
                 </button>
-                <button onclick="selectAmount(25000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 transition-all">
-                    <div class="text-2xl font-bold text-gray-900">₹25,000</div>
-                    <div class="text-sm text-gray-600">Kitchen + Bath</div>
+
+                <!-- ₹1,75,000 -->
+                <button onclick="selectAmount(175000)" class="donation-btn relative glass-gradient-amber border-2 border-orange-500/40 hover:border-orange-600/60 rounded-xl p-4 md:p-5 transition-all text-left hover:shadow-xl">
+                    <div class="text-xl md:text-2xl font-bold text-white glass-text-shadow mb-1">₹1,75,000</div>
+                    <div class="text-sm font-medium text-white/95 glass-text-shadow mb-1">Half Home Package</div>
+                    <div class="text-xs text-white/90 glass-text-shadow hidden md:block">Foundation + 2 rooms + roofing</div>
                 </button>
-                <button onclick="toggleCustomAmount()" class="donation-btn border-2 border-gray-200 hover:border-trust-blue bg-white hover:bg-blue-50 rounded-xl p-4 transition-all">
-                    <div class="text-2xl font-bold text-trust-blue">Custom</div>
-                    <div class="text-sm text-gray-600">You Decide</div>
+
+                <!-- ₹3,50,000 -->
+                <button onclick="selectAmount(350000)" class="donation-btn relative glass-gradient-premium border-2 border-purple-500/40 hover:border-purple-600/60 rounded-xl p-4 md:p-5 transition-all text-left hover:shadow-xl">
+                    <div class="text-xl md:text-2xl font-bold text-white glass-text-shadow mb-1">₹3,50,000</div>
+                    <div class="text-sm font-medium text-white/95 glass-text-shadow mb-1">Complete Home</div>
+                    <div class="text-xs text-white/90 glass-text-shadow hidden md:block">Rooms + kitchen + bathroom</div>
+                </button>
+            </div>
+
+            <!-- Custom Amount Button -->
+            <div class="mb-8">
+                <button onclick="toggleCustomAmount()" class="donation-btn w-full border-2 border-gray-300 hover:border-trust-blue bg-white hover:bg-blue-50 rounded-xl p-4 transition-all">
+                    <div class="flex items-center justify-center space-x-3">
+                        <i class="fas fa-edit text-trust-blue text-xl"></i>
+                        <div>
+                            <div class="text-xl font-bold text-trust-blue">Custom Amount</div>
+                            <div class="text-sm text-gray-600">You decide the impact</div>
+                        </div>
+                    </div>
                 </button>
             </div>
 
             <!-- Custom Amount Input (Hidden by default) -->
-            <div id="custom-amount-section" class="hidden mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Enter Custom Amount</label>
-                <div class="relative">
-                    <span class="absolute left-4 top-4 text-gray-500 text-xl">₹</span>
-                    <input type="number" id="custom-amount"
-                           class="w-full pl-10 pr-4 py-4 text-2xl font-bold border-2 border-gray-300 rounded-xl focus:border-saffron focus:outline-none"
-                           placeholder="5000" min="100">
+            <div id="custom-amount-section" class="custom-amount-collapsed mb-6">
+                <div class="custom-amount-content">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Enter Custom Amount</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-4 text-gray-500 text-xl">₹</span>
+                        <input type="number" id="custom-amount"
+                               class="w-full pl-10 pr-4 py-4 text-2xl font-bold border-2 border-gray-300 rounded-xl focus:border-saffron focus:outline-none"
+                               placeholder="5000" min="500">
+                    </div>
                 </div>
             </div>
 
@@ -636,7 +737,7 @@
                         Why We Can't Stop Building
                     </h3>
                     <p class="text-gray-700 leading-relaxed mb-6">
-                        In September 2025, the worst floods in 40 years devastated Punjab. 350,000 families lost everything. When we met 8-year-old Simran, she was doing homework under a tarp in a relief camp. Her family's home was swept away. Today, thanks to donors like you, she studies at a real desk, in a real home, with a real future ahead. This is why we build - not just homes, but hope. Your donation doesn't just provide shelter; it restores dignity, enables education, and rebuilds communities.
+                        In September 2025, the worst floods in 40 years devastated Punjab. 384,000 people lost everything. When we met 8-year-old Simran, she was doing homework under a tarp in a relief camp. Her family's home was swept away. Today, thanks to donors like you, she studies at a real desk, in a real home, with a real future ahead. This is why we build - not just homes, but hope. Your donation doesn't just provide shelter; it restores dignity, enables education, and rebuilds communities.
                     </p>
                     <button onclick="openVideoModal()" class="text-saffron font-semibold flex items-center space-x-2 hover:space-x-3 transition-all cursor-pointer">
                         <span>Watch The Crisis Unfold (1 min)</span>
@@ -699,6 +800,7 @@
                 The Crisis We're Fighting
             </h3>
             <p class="text-lg text-gray-600">September 2025: The worst floods in 40 years devastated Punjab</p>
+            <p class="text-xs text-gray-500 mt-2">Source: 2025 Punjab, India floods - Wikipedia, Punjab Floods Secondary Data Analysis Report (September 2025)</p>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -773,10 +875,10 @@
         <div class="text-center mt-10">
             <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 mb-6 max-w-2xl mx-auto">
                 <p class="text-red-800 font-semibold mb-2">
-                    <i class="fas fa-exclamation-circle"></i> 350,000 families still living in temporary shelters
+                    <i class="fas fa-exclamation-circle"></i> 384,000 people still living in temporary shelters
                 </p>
                 <p class="text-gray-700 text-sm">
-                    Winter begins in 52 days. These families need permanent homes NOW.
+                    Winter begins in 52 days. These people need permanent homes NOW.
                 </p>
             </div>
             <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})" class="bg-saffron text-white font-bold px-8 py-3 rounded-xl hover:bg-saffron-dark transition shadow-lg">
@@ -836,7 +938,7 @@
             <div class="bg-white rounded-xl p-6 max-w-2xl mx-auto shadow-lg">
                 <p class="text-sm text-gray-600 mb-2">Share this message:</p>
                 <p class="text-gray-800 italic">
-                    "350,000 families in Punjab still don't have homes after devastating floods. Help rebuild lives - every ₹500 provides 50 bricks. Donations matched 2x until Sunday! 🏠"
+                    "384,000 people in Punjab still don't have homes after devastating floods. Help rebuild lives - every ₹500 provides 50 bricks. Donations matched 2x until Sunday! 🏠"
                 </p>
             </div>
         </div>
@@ -878,7 +980,7 @@
                     <i id="faq-icon-3" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
                 </button>
                 <div id="faq-content-3" class="faq-content px-6">
-                    <p class="text-gray-700">Every rupee helps. Even ₹100 buys 10 bricks. There's no minimum donation amount - contribute what feels right for you. <a href="#donation-form" class="text-saffron font-semibold hover:underline">Click here to donate any amount</a>.</p>
+                    <p class="text-gray-700">Every contribution matters! Even ₹500 provides 50 bricks toward building a home, and you can donate any amount that feels right for you. <a href="#donation-form" class="text-saffron font-semibold hover:underline">Click here to donate</a>.</p>
                 </div>
             </div>
 
@@ -889,7 +991,7 @@
                     <i id="faq-icon-4" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
                 </button>
                 <div id="faq-content-4" class="faq-content px-6">
-                    <p class="text-gray-700">Yes! All donations are eligible for 80G tax deduction under Indian Income Tax Act. You'll receive an instant digital certificate via email that you can use while filing your returns, saving you up to 30% on taxes.</p>
+                    <p class="text-gray-700">Yes! All donations are eligible for 80G tax deduction under Indian Income Tax Act. Global Sikhs is registered under Section 80G (Registration details provided on your receipt). You'll receive an instant digital certificate via email that you can use while filing your returns, saving you up to 30% on taxes.</p>
                 </div>
             </div>
 
@@ -922,7 +1024,7 @@
                     <i id="faq-icon-7" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
                 </button>
                 <div id="faq-content-7" class="faq-content px-6">
-                    <p class="text-gray-700">Yes! We accept donations of construction materials like cement, bricks, steel, and roofing materials. Please contact us at <a href="mailto:donate@theglobalsikhs.org" class="text-saffron font-semibold hover:underline">donate@theglobalsikhs.org</a> or call +91-XXXX-XXXXXX to coordinate material donations.</p>
+                    <p class="text-gray-700">Yes! We accept donations of construction materials like cement, bricks, steel, and roofing materials. Please contact us at <a href="mailto:donate@theglobalsikhs.org" class="text-saffron font-semibold hover:underline">donate@theglobalsikhs.org</a> or WhatsApp us at <a href="https://api.whatsapp.com/send/?phone=919145392453&text&type=phone_number&app_absent=0" target="_blank" class="text-saffron font-semibold hover:underline">+91-91453-92453</a> to coordinate material donations.</p>
                 </div>
             </div>
 
@@ -983,13 +1085,13 @@
                 <div class="bg-white rounded-full p-2 mb-3">
                     <img src="assets/images/global-sikhs-logo.png" alt="Global Sikhs" class="h-12 w-auto">
                 </div>
-                <p class="text-center text-gray-300">&copy; 2025 Rebuild Punjab - United Sikhs Initiative. All rights reserved.</p>
+                <p class="text-center text-gray-300">&copy; 2025 Rebuild Punjab - Global Sikhs. All rights reserved.</p>
             </div>
             <div class="flex justify-center items-center gap-6">
                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.theglobalsikhs.org/rebuildpunjab" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Share on Facebook">
                     <i class="fab fa-facebook text-2xl"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?url=https://www.theglobalsikhs.org/rebuildpunjab&text=Help%20rebuild%20Punjab%20-%20350,000%20families%20need%20homes%20after%20devastating%20floods" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Share on Twitter/X">
+                <a href="https://twitter.com/intent/tweet?url=https://www.theglobalsikhs.org/rebuildpunjab&text=Help%20rebuild%20Punjab%20-%20384,000%20people%20need%20homes%20after%20devastating%20floods" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Share on Twitter/X">
                     <i class="fab fa-twitter text-2xl"></i>
                 </a>
                 <a href="https://www.instagram.com/theglobalsikhs" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Follow on Instagram">
@@ -1038,7 +1140,7 @@
                 </h3>
 
                 <p class="text-base text-gray-800 mb-3 font-semibold">
-                    <strong class="text-saffron">350,000 families</strong> are still waiting in temporary shelters
+                    <strong class="text-saffron">384,000 people</strong> are still waiting in temporary shelters
                 </p>
 
                 <p class="text-sm text-gray-600 mb-6 leading-relaxed">
@@ -1088,16 +1190,37 @@
             updateAmountDisplay();
 
             // Hide custom input if preset selected
-            document.getElementById('custom-amount-section').classList.add('hidden');
+            const section = document.getElementById('custom-amount-section');
+            section.classList.remove('custom-amount-expanded');
+            section.classList.add('custom-amount-collapsed');
 
             // Visual feedback with border and background
             document.querySelectorAll('.donation-btn').forEach(btn => {
                 btn.classList.remove('border-saffron', 'bg-saffron/10');
-                btn.classList.add('border-gray-200');
+
+                // Restore original border colors based on card type (with semi-transparent borders for glassmorphic cards)
+                if (btn.classList.contains('glass-gradient-amber')) {
+                    btn.classList.add('border-orange-500/40');
+                } else if (btn.classList.contains('glass-gradient-premium')) {
+                    btn.classList.add('border-purple-500/40');
+                } else if (btn.textContent.includes('POPULAR')) {
+                    // Keep POPULAR card border as is
+                } else {
+                    btn.classList.add('border-gray-200');
+                }
             });
 
             const selectedBtn = event.target.closest('.donation-btn');
-            selectedBtn.classList.add('border-saffron', 'bg-saffron/10');
+
+            // Remove original border color before adding saffron
+            selectedBtn.classList.remove('border-gray-200', 'border-orange-500/40', 'border-purple-500/40');
+            selectedBtn.classList.add('border-saffron');
+
+            // Only add background color to non-gradient cards (preserve glassmorphic effect)
+            if (!selectedBtn.classList.contains('glass-gradient-amber') &&
+                !selectedBtn.classList.contains('glass-gradient-premium')) {
+                selectedBtn.classList.add('bg-saffron/10');
+            }
 
             // Smooth scroll to form
             document.getElementById('donation-form').scrollIntoView({behavior: 'smooth', block: 'center'});
@@ -1105,9 +1228,20 @@
 
         function toggleCustomAmount() {
             const section = document.getElementById('custom-amount-section');
-            section.classList.toggle('hidden');
-            if (!section.classList.contains('hidden')) {
-                document.getElementById('custom-amount').focus();
+            const isCollapsed = section.classList.contains('custom-amount-collapsed');
+
+            if (isCollapsed) {
+                // Expand
+                section.classList.remove('custom-amount-collapsed');
+                section.classList.add('custom-amount-expanded');
+                // Focus input after animation starts
+                setTimeout(() => {
+                    document.getElementById('custom-amount').focus();
+                }, 150);
+            } else {
+                // Collapse
+                section.classList.remove('custom-amount-expanded');
+                section.classList.add('custom-amount-collapsed');
             }
         }
 
@@ -1119,7 +1253,7 @@
         // Update amount when custom input changes
         document.getElementById('custom-amount')?.addEventListener('input', (e) => {
             const value = parseInt(e.target.value) || 0;
-            if (value >= 100) {
+            if (value > 0) {
                 selectedAmountValue = value;
                 updateAmountDisplay();
             }
@@ -1275,7 +1409,7 @@
 
         function shareOnTwitter() {
             const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent('Help rebuild Punjab - 350,000 families need homes after devastating floods. Donations matched 2x! 🏠');
+            const text = encodeURIComponent('Help rebuild Punjab - 384,000 people need homes after devastating floods. Donations matched 2x! 🏠');
             window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
         }
 
