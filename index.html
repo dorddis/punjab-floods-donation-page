@@ -73,6 +73,96 @@
         .count-animate {
             animation: count-up 0.6s ease-out;
         }
+
+        /* Fade-in animation for scroll-triggered elements */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Staggered delay for sequential fade-ins */
+        .animate-on-scroll:nth-child(1) { animation-delay: 0s; }
+        .animate-on-scroll:nth-child(2) { animation-delay: 0.1s; }
+        .animate-on-scroll:nth-child(3) { animation-delay: 0.2s; }
+        .animate-on-scroll:nth-child(4) { animation-delay: 0.3s; }
+        .animate-on-scroll:nth-child(5) { animation-delay: 0.4s; }
+        .animate-on-scroll:nth-child(6) { animation-delay: 0.5s; }
+
+        /* FAQ Accordion Animation */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+            opacity: 0;
+        }
+
+        .faq-content.open {
+            opacity: 1;
+        }
+
+        .faq-content p {
+            padding-top: 0.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        /* Modal fade-in */
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-fade-in {
+            animation: modalFadeIn 0.2s ease-out;
+        }
+
+        /* Sticky CTA slide-up */
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 0.3s ease-out;
+        }
+
+
+        /* Loading spinner */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+        }
     </style>
 </head>
 
@@ -105,7 +195,7 @@
     <section class="relative bg-gradient-to-br from-gray-800 to-gray-900 text-white overflow-hidden">
         <!-- Background image -->
         <div class="absolute inset-0">
-            <img src="assets/images/hero-background.jpg" alt="Punjab Flood Relief" class="w-full h-full object-cover">
+            <img src="assets/images/hero-background.jpg" alt="Punjab Flood Relief" class="hero-background w-full h-full object-cover">
         </div>
         <div class="absolute inset-0 bg-black opacity-60"></div>
 
@@ -168,7 +258,7 @@
         <!-- Tangible Impact Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <!-- 50 Bricks -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-gray-100 hover:border-saffron transition-all hover:shadow-xl">
+            <div class="animate-on-scroll bg-white rounded-2xl shadow-lg p-6 border-2 border-gray-100 hover:border-saffron transition-all hover:shadow-xl">
                 <div class="text-center mb-4">
                     <div class="inline-block p-4 bg-red-50 rounded-full mb-3">
                         <i class="fas fa-cube text-red-600 text-4xl"></i>
@@ -183,7 +273,7 @@
             </div>
 
             <!-- Room Foundation -->
-            <div class="relative bg-white rounded-2xl shadow-lg p-6 border-2 border-saffron hover:shadow-2xl transform hover:-translate-y-1 transition-all">
+            <div class="animate-on-scroll relative bg-white rounded-2xl shadow-lg p-6 border-2 border-saffron hover:shadow-2xl transform hover:-translate-y-1 transition-all">
                 <div class="absolute top-4 right-4">
                     <span class="bg-saffron text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
                 </div>
@@ -201,7 +291,7 @@
             </div>
 
             <!-- Complete Home -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-gray-100 hover:border-saffron transition-all hover:shadow-xl">
+            <div class="animate-on-scroll bg-white rounded-2xl shadow-lg p-6 border-2 border-gray-100 hover:border-saffron transition-all hover:shadow-xl">
                 <div class="text-center mb-4">
                     <div class="inline-block p-4 bg-saffron/10 rounded-full mb-3">
                         <i class="fas fa-home text-saffron text-4xl"></i>
@@ -228,7 +318,7 @@
                     <p class="text-white/90">Help us complete this home TODAY</p>
                 </div>
                 <div class="text-right">
-                    <div class="text-4xl font-bold">67%</div>
+                    <div class="text-4xl font-bold" data-countup data-target="67" data-suffix="%">67%</div>
                     <div class="text-sm">Complete</div>
                 </div>
             </div>
@@ -321,8 +411,8 @@
 
             <!-- Email Input -->
             <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Email for receipt & updates</label>
-                <input type="email" class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-saffron focus:outline-none"
+                <label for="email-input" class="block text-sm font-medium text-gray-700 mb-2">Email for receipt & updates</label>
+                <input type="email" id="email-input" class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-saffron focus:outline-none"
                        placeholder="your@email.com">
             </div>
 
@@ -376,7 +466,7 @@
 
             <div class="space-y-3">
                 <!-- Donor Card 1 -->
-                <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
+                <div class="animate-on-scroll bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
                     <div class="flex items-center space-x-3">
                         <div class="w-12 h-12 bg-saffron/10 rounded-full flex items-center justify-center">
                             <i class="fas fa-user text-saffron"></i>
@@ -392,7 +482,7 @@
                 </div>
 
                 <!-- Donor Card 2 -->
-                <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
+                <div class="animate-on-scroll bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
                     <div class="flex items-center space-x-3">
                         <div class="w-12 h-12 bg-hope-green/10 rounded-full flex items-center justify-center">
                             <i class="fas fa-user text-hope-green"></i>
@@ -408,7 +498,7 @@
                 </div>
 
                 <!-- Donor Card 3 -->
-                <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
+                <div class="animate-on-scroll bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
                     <div class="flex items-center space-x-3">
                         <div class="w-12 h-12 bg-trust-blue/10 rounded-full flex items-center justify-center">
                             <i class="fas fa-users text-trust-blue"></i>
@@ -424,7 +514,7 @@
                 </div>
 
                 <!-- Donor Card 4 -->
-                <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
+                <div class="animate-on-scroll bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
                     <div class="flex items-center space-x-3">
                         <div class="w-12 h-12 bg-saffron/10 rounded-full flex items-center justify-center">
                             <i class="fas fa-building text-saffron"></i>
@@ -494,15 +584,15 @@
 
             <div class="grid md:grid-cols-3 gap-6 mb-8">
                 <div class="text-center">
-                    <div class="text-5xl font-bold mb-2">82%</div>
+                    <div class="text-5xl font-bold mb-2" data-countup data-target="82" data-suffix="%">82%</div>
                     <div class="text-white/80">Direct construction materials & labor</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-5xl font-bold mb-2">12%</div>
+                    <div class="text-5xl font-bold mb-2" data-countup data-target="12" data-suffix="%">12%</div>
                     <div class="text-white/80">Local workforce wages</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-5xl font-bold mb-2">6%</div>
+                    <div class="text-5xl font-bold mb-2" data-countup data-target="6" data-suffix="%">6%</div>
                     <div class="text-white/80">Operations & monitoring</div>
                 </div>
             </div>
@@ -528,7 +618,7 @@
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <!-- Image 1 -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+            <div class="animate-on-scroll relative overflow-hidden rounded-xl shadow-lg group">
                 <img src="assets/images/flood-impact/punjab-floods-1.jpg" alt="Punjab floods devastation" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                 <!-- Always visible on mobile, hover on desktop -->
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
@@ -540,7 +630,7 @@
             </div>
 
             <!-- Image 2 -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+            <div class="animate-on-scroll relative overflow-hidden rounded-xl shadow-lg group">
                 <img src="assets/images/flood-impact/punjab-floods-2.jpg" alt="Families displaced by floods" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                     <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
@@ -551,7 +641,7 @@
             </div>
 
             <!-- Image 3 -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+            <div class="animate-on-scroll relative overflow-hidden rounded-xl shadow-lg group">
                 <img src="assets/images/flood-impact/punjab-floods-3.jpg" alt="Flood impact on communities" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                     <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
@@ -562,7 +652,7 @@
             </div>
 
             <!-- Image 4 -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+            <div class="animate-on-scroll relative overflow-hidden rounded-xl shadow-lg group">
                 <img src="assets/images/flood-impact/punjab-floods-4.webp" alt="Emergency response operations" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                     <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
@@ -573,7 +663,7 @@
             </div>
 
             <!-- Image 5 -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+            <div class="animate-on-scroll relative overflow-hidden rounded-xl shadow-lg group">
                 <img src="assets/images/flood-impact/punjab-floods-5.jpg" alt="Worst floods in 40 years" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                     <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
@@ -584,7 +674,7 @@
             </div>
 
             <!-- Image 6 -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+            <div class="animate-on-scroll relative overflow-hidden rounded-xl shadow-lg group">
                 <img src="assets/images/flood-impact/punjab-floods-6.jpg" alt="Rescue operations in Punjab" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                     <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
@@ -673,20 +763,93 @@
             Still Thinking? We've Got Answers
         </h3>
 
-        <div class="space-y-4">
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <h4 class="font-bold text-gray-900 mb-2">How quickly will my donation be used?</h4>
-                <p class="text-gray-700">Within 72 hours. You'll receive photos of materials purchased with your contribution.</p>
+        <div class="space-y-3">
+            <!-- FAQ 1 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button onclick="toggleFAQ(1)" class="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                    <h4 class="font-bold text-gray-900 pr-4">How quickly will my donation be used?</h4>
+                    <i id="faq-icon-1" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
+                </button>
+                <div id="faq-content-1" class="faq-content px-6">
+                    <p class="text-gray-700">Within 72 hours. You'll receive photos of materials purchased with your contribution, along with a unique tracking ID to monitor your donation's impact in real-time.</p>
+                </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <h4 class="font-bold text-gray-900 mb-2">Can I visit the construction site?</h4>
-                <p class="text-gray-700">Yes! We organize donor visits every Saturday. You'll receive an invitation after donating.</p>
+            <!-- FAQ 2 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button onclick="toggleFAQ(2)" class="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                    <h4 class="font-bold text-gray-900 pr-4">Can I visit the construction site?</h4>
+                    <i id="faq-icon-2" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
+                </button>
+                <div id="faq-content-2" class="faq-content px-6">
+                    <p class="text-gray-700">Yes! We organize donor visits every Saturday. You'll receive an invitation after donating with complete directions, and you can meet the families your donation is helping directly.</p>
+                </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <h4 class="font-bold text-gray-900 mb-2">What if I can't afford ₹500?</h4>
-                <p class="text-gray-700">Every rupee helps. Even ₹100 buys 10 bricks. <a href="#donation-form" class="text-saffron font-semibold">Click here to donate any amount</a>.</p>
+            <!-- FAQ 3 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button onclick="toggleFAQ(3)" class="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                    <h4 class="font-bold text-gray-900 pr-4">What if I can't afford ₹500?</h4>
+                    <i id="faq-icon-3" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
+                </button>
+                <div id="faq-content-3" class="faq-content px-6">
+                    <p class="text-gray-700">Every rupee helps. Even ₹100 buys 10 bricks. There's no minimum donation amount - contribute what feels right for you. <a href="#donation-form" class="text-saffron font-semibold hover:underline">Click here to donate any amount</a>.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button onclick="toggleFAQ(4)" class="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                    <h4 class="font-bold text-gray-900 pr-4">Is my donation tax-deductible?</h4>
+                    <i id="faq-icon-4" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
+                </button>
+                <div id="faq-content-4" class="faq-content px-6">
+                    <p class="text-gray-700">Yes! All donations are eligible for 80G tax deduction under Indian Income Tax Act. You'll receive an instant digital certificate via email that you can use while filing your returns, saving you up to 30% on taxes.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button onclick="toggleFAQ(5)" class="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                    <h4 class="font-bold text-gray-900 pr-4">How are families selected for home reconstruction?</h4>
+                    <i id="faq-icon-5" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
+                </button>
+                <div id="faq-content-5" class="faq-content px-6">
+                    <p class="text-gray-700">We work with local authorities and conduct ground surveys to identify the most vulnerable families - those with children, elderly members, or persons with disabilities. Priority is given to families still living in temporary shelters with no other housing options.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button onclick="toggleFAQ(6)" class="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                    <h4 class="font-bold text-gray-900 pr-4">Will I receive updates on the home construction?</h4>
+                    <i id="faq-icon-6" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
+                </button>
+                <div id="faq-content-6" class="faq-content px-6">
+                    <p class="text-gray-700">Absolutely! You'll receive weekly photo updates via WhatsApp and email showing construction progress. Once the home is completed, we'll send you photos of the family moving in, along with a thank you message from them.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button onclick="toggleFAQ(7)" class="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                    <h4 class="font-bold text-gray-900 pr-4">Can I donate materials instead of money?</h4>
+                    <i id="faq-icon-7" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
+                </button>
+                <div id="faq-content-7" class="faq-content px-6">
+                    <p class="text-gray-700">Yes! We accept donations of construction materials like cement, bricks, steel, and roofing materials. Please contact us at <a href="mailto:donate@theglobalsikhs.org" class="text-saffron font-semibold hover:underline">donate@theglobalsikhs.org</a> or call +91-XXXX-XXXXXX to coordinate material donations.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button onclick="toggleFAQ(8)" class="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                    <h4 class="font-bold text-gray-900 pr-4">What happens when winter arrives?</h4>
+                    <i id="faq-icon-8" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
+                </button>
+                <div id="faq-content-8" class="faq-content px-6">
+                    <p class="text-gray-700">Winter in Punjab can be harsh, with temperatures dropping below 5°C. Families in temporary shelters face extreme risk of illness, especially children and elderly. We're racing against time to provide permanent shelter before winter begins in 52 days. Your donation today ensures families have safe, warm homes before the cold sets in.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -698,17 +861,17 @@
                 Be Part of Something Bigger
             </h2>
 
-            <div class="grid grid-cols-3 gap-6 mb-10">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
                 <div>
-                    <div class="text-4xl font-bold mb-2">12,847</div>
+                    <div class="text-4xl font-bold mb-2" data-countup data-target="12847">12,847</div>
                     <div class="text-white/90">Total Donors</div>
                 </div>
                 <div>
-                    <div class="text-4xl font-bold mb-2">347</div>
+                    <div class="text-4xl font-bold mb-2" data-countup data-target="347">347</div>
                     <div class="text-white/90">Homes Completed</div>
                 </div>
                 <div>
-                    <div class="text-4xl font-bold mb-2">1,388</div>
+                    <div class="text-4xl font-bold mb-2" data-countup data-target="1388">1,388</div>
                     <div class="text-white/90">Lives Changed</div>
                 </div>
             </div>
@@ -718,11 +881,11 @@
                 Join the Rebuild Punjab Movement
             </button>
 
-            <div class="mt-8 text-sm text-white/80 space-x-6">
-                <a href="#" class="hover:underline">Donate Materials</a>
-                <a href="#" class="hover:underline">Volunteer</a>
-                <a href="#" class="hover:underline">Corporate Partnership</a>
-                <a href="#" class="hover:underline">Share Campaign</a>
+            <div class="mt-8 text-sm text-white/80 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+                <a href="#" class="hover:underline hover:text-white transition">Donate Materials</a>
+                <a href="#" class="hover:underline hover:text-white transition">Volunteer</a>
+                <a href="#" class="hover:underline hover:text-white transition">Corporate Partnership</a>
+                <a href="#" class="hover:underline hover:text-white transition">Share Campaign</a>
             </div>
         </div>
     </section>
@@ -731,21 +894,24 @@
     <footer class="bg-gray-900 text-gray-400 py-8 pb-24 md:pb-8">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex flex-col items-center mb-6">
-                <img src="assets/images/global-sikhs-logo.png" alt="Global Sikhs" class="h-16 w-auto mb-3 opacity-80">
-                <p class="text-center">&copy; 2025 Rebuild Punjab - United Sikhs Initiative. All rights reserved.</p>
+                <!-- Logo with white background for better contrast -->
+                <div class="bg-white rounded-full p-2 mb-3">
+                    <img src="assets/images/global-sikhs-logo.png" alt="Global Sikhs" class="h-12 w-auto">
+                </div>
+                <p class="text-center text-gray-300">&copy; 2025 Rebuild Punjab - United Sikhs Initiative. All rights reserved.</p>
             </div>
-            <div class="flex justify-center items-center gap-4">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.theglobalsikhs.org/rebuildpunjab" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Share on Facebook">
-                    <i class="fab fa-facebook text-xl"></i>
+            <div class="flex justify-center items-center gap-6">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.theglobalsikhs.org/rebuildpunjab" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Share on Facebook">
+                    <i class="fab fa-facebook text-2xl"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?url=https://www.theglobalsikhs.org/rebuildpunjab&text=Help%20rebuild%20Punjab%20-%20350,000%20families%20need%20homes%20after%20devastating%20floods" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Share on Twitter/X">
-                    <i class="fab fa-twitter text-xl"></i>
+                <a href="https://twitter.com/intent/tweet?url=https://www.theglobalsikhs.org/rebuildpunjab&text=Help%20rebuild%20Punjab%20-%20350,000%20families%20need%20homes%20after%20devastating%20floods" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Share on Twitter/X">
+                    <i class="fab fa-twitter text-2xl"></i>
                 </a>
-                <a href="https://www.instagram.com/theglobalsikhs" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Follow on Instagram">
-                    <i class="fab fa-instagram text-xl"></i>
+                <a href="https://www.instagram.com/theglobalsikhs" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Follow on Instagram">
+                    <i class="fab fa-instagram text-2xl"></i>
                 </a>
-                <a href="https://wa.me/?text=Help%20rebuild%20Punjab%20after%20devastating%20floods.%20Donations%20matched%202x!%20https://www.theglobalsikhs.org/rebuildpunjab" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Share on WhatsApp">
-                    <i class="fab fa-whatsapp text-xl"></i>
+                <a href="https://wa.me/?text=Help%20rebuild%20Punjab%20after%20devastating%20floods.%20Donations%20matched%202x!%20https://www.theglobalsikhs.org/rebuildpunjab" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Share on WhatsApp">
+                    <i class="fab fa-whatsapp text-2xl"></i>
                 </a>
             </div>
         </div>
@@ -776,12 +942,14 @@
             // Hide custom input if preset selected
             document.getElementById('custom-amount-section').classList.add('hidden');
 
-            // Visual feedback
+            // Visual feedback with border and background
             document.querySelectorAll('.donation-btn').forEach(btn => {
                 btn.classList.remove('border-saffron', 'bg-saffron/10');
                 btn.classList.add('border-gray-200');
             });
-            event.target.closest('.donation-btn').classList.add('border-saffron', 'bg-saffron/10');
+
+            const selectedBtn = event.target.closest('.donation-btn');
+            selectedBtn.classList.add('border-saffron', 'bg-saffron/10');
 
             // Smooth scroll to form
             document.getElementById('donation-form').scrollIntoView({behavior: 'smooth', block: 'center'});
@@ -810,30 +978,119 @@
         });
 
         function completeDonation() {
-            // Mock donation completion
-            alert(`Thank you for your donation of ₹${selectedAmountValue.toLocaleString('en-IN')}!\n\nYou will receive:\n✓ Email receipt with 80G certificate\n✓ WhatsApp message with donation ID\n✓ Weekly construction updates\n\nWith matching, your impact is ₹${(selectedAmountValue * 2).toLocaleString('en-IN')}!`);
+            const btn = event.target;
+            const originalHTML = btn.innerHTML;
+
+            // Show loading state
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> <span class="ml-2">Processing...</span>';
+
+            // Simulate processing
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+
+                // Show success alert
+                alert(`Thank you for your donation of ₹${selectedAmountValue.toLocaleString('en-IN')}!\n\nYou will receive:\n✓ Email receipt with 80G certificate\n✓ WhatsApp message with donation ID\n✓ Weekly construction updates\n\nWith matching, your impact is ₹${(selectedAmountValue * 2).toLocaleString('en-IN')}!`);
+            }, 1500);
         }
 
-        // Show sticky footer after scrolling 50%
+        // Show sticky footer after scrolling 50% (with slide-up animation)
+        let stickyFooterShown = false;
         window.addEventListener('scroll', () => {
             const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             const stickyFooter = document.getElementById('sticky-footer');
 
             if (scrollPercent > 50 && window.innerWidth < 768) {
-                stickyFooter.classList.remove('hidden');
+                if (!stickyFooterShown) {
+                    stickyFooter.classList.remove('hidden');
+                    stickyFooter.classList.add('slide-up');
+                    stickyFooterShown = true;
+                }
             } else {
-                stickyFooter.classList.add('hidden');
+                if (stickyFooterShown) {
+                    stickyFooter.classList.add('hidden');
+                    stickyFooter.classList.remove('slide-up');
+                    stickyFooterShown = false;
+                }
             }
         });
 
         // Initialize
         updateAmountDisplay();
 
-        // Video Modal Functions
+        // ===== ANIMATION ENHANCEMENTS =====
+
+        // 1. Number Count-Up Animation
+        function animateNumber(element, target, duration = 2000, suffix = '') {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString('en-IN') + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString('en-IN') + suffix;
+                }
+            }, 16);
+        }
+
+        // Observe and animate numbers when they enter viewport
+        const numberObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    const target = parseInt(entry.target.dataset.target);
+                    const suffix = entry.target.dataset.suffix || '';
+                    animateNumber(entry.target, target, 2000, suffix);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Apply to stat numbers
+        document.querySelectorAll('[data-countup]').forEach(el => {
+            numberObserver.observe(el);
+        });
+
+        // 2. Scroll-Triggered Fade-In Animations
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Apply to elements that should fade in
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            fadeObserver.observe(el);
+        });
+
+        // 3. Hero Parallax Effect
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const hero = document.querySelector('.hero-background');
+                    if (hero) {
+                        const scrolled = window.pageYOffset;
+                        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Video Modal Functions (with fade-in)
         function openVideoModal() {
             const modal = document.getElementById('video-modal');
             const video = document.getElementById('flood-video');
             modal.classList.remove('hidden');
+            modal.classList.add('modal-fade-in');
             // Small delay to ensure modal is visible before playing
             setTimeout(() => {
                 video.play().catch(err => {
@@ -849,6 +1106,7 @@
             video.pause();
             video.currentTime = 0; // Reset to beginning
             modal.classList.add('hidden');
+            modal.classList.remove('modal-fade-in');
         }
 
         // Close video modal on Escape key
@@ -924,6 +1182,32 @@
                 btn.textContent = originalText;
                 btn.parentElement.classList.remove('border-green-600', 'bg-green-50');
             }, 2000);
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFAQ(faqNumber) {
+            const content = document.getElementById(`faq-content-${faqNumber}`);
+            const icon = document.getElementById(`faq-icon-${faqNumber}`);
+
+            // Toggle the clicked FAQ with smooth animation
+            if (content.classList.contains('open')) {
+                // Closing: set max-height to current scrollHeight, then animate to 0
+                const currentHeight = content.scrollHeight;
+                content.style.maxHeight = currentHeight + 'px';
+
+                // Force reflow to ensure the height is set before transitioning
+                content.offsetHeight;
+
+                content.style.maxHeight = '0';
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Opening: set max-height to scrollHeight (includes all padding)
+                content.classList.add('open');
+                const fullHeight = content.scrollHeight;
+                content.style.maxHeight = fullHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
         }
     </script>
 
