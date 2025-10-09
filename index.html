@@ -1016,6 +1016,47 @@
         </div>
     </div>
 
+    <!-- Exit Intent Popup -->
+    <div id="exit-intent-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-[70] flex items-center justify-center p-4 modal-fade-in">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-8 relative shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="closeExitIntent()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="text-center">
+                <div class="inline-block p-4 bg-red-50 rounded-full mb-4">
+                    <i class="fas fa-heart-broken text-red-600 text-5xl"></i>
+                </div>
+                <h3 class="font-display text-3xl font-bold text-gray-900 mb-4">
+                    Wait! Before You Go...
+                </h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    <strong>350,000 families</strong> are waiting for help in temporary shelters.
+                </p>
+                <p class="text-gray-600 mb-6">
+                    Winter begins in 52 days. Your <strong>₹500</strong> donation (just ₹17/day for a month) can provide <strong>50 bricks</strong> toward building a permanent home.
+                </p>
+
+                <div class="bg-hope-green/10 border-2 border-hope-green rounded-xl p-4 mb-6">
+                    <p class="text-hope-green font-bold">
+                        <i class="fas fa-gift"></i> Special: Your donation matched 2x until Sunday!
+                    </p>
+                    <p class="text-sm text-gray-700 mt-1">
+                        ₹500 becomes ₹1,000 impact
+                    </p>
+                </div>
+
+                <button onclick="closeExitIntentAndDonate()" class="w-full bg-saffron hover:bg-saffron-dark text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition-all transform hover:scale-105 mb-3">
+                    <i class="fas fa-heart"></i> Yes, I'll Help Build Home #348
+                </button>
+
+                <button onclick="closeExitIntent()" class="text-gray-500 text-sm hover:text-gray-700">
+                    No thanks, I'll skip this opportunity to help
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
         let selectedAmountValue = 2500;
@@ -1402,6 +1443,52 @@
         window.addEventListener('load', () => {
             initCarousel();
         });
+
+        // ===== EXIT INTENT POPUP =====
+        let exitIntentShown = false;
+
+        function closeExitIntent() {
+            const modal = document.getElementById('exit-intent-modal');
+            modal.classList.add('hidden');
+        }
+
+        function closeExitIntentAndDonate() {
+            closeExitIntent();
+            // Scroll to donation form
+            document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Detect exit intent (mouse leaving viewport from top)
+        document.addEventListener('mouseleave', (e) => {
+            // Only trigger if:
+            // 1. Mouse is leaving from the top
+            // 2. Exit intent hasn't been shown yet
+            // 3. User has scrolled at least 25% down the page (to avoid immediate trigger)
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+            if (!exitIntentShown && e.clientY <= 0 && scrollPercent > 25) {
+                exitIntentShown = true;
+                const modal = document.getElementById('exit-intent-modal');
+                modal.classList.remove('hidden');
+            }
+        });
+
+        // Also show exit intent on back button (for mobile)
+        let isBackButtonPressed = false;
+        window.addEventListener('popstate', () => {
+            if (!exitIntentShown && !isBackButtonPressed) {
+                isBackButtonPressed = true;
+                exitIntentShown = true;
+                const modal = document.getElementById('exit-intent-modal');
+                modal.classList.remove('hidden');
+
+                // Re-push state so user doesn't leave if they click back again
+                history.pushState(null, null, location.href);
+            }
+        });
+
+        // Push initial state for back button detection
+        history.pushState(null, null, location.href);
     </script>
 
 </body>
