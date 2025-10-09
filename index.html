@@ -103,8 +103,11 @@
 
     <!-- Hero Section - EMOTIONAL HOOK -->
     <section class="relative bg-gradient-to-br from-gray-800 to-gray-900 text-white overflow-hidden">
-        <!-- Background overlay image would go here -->
-        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <!-- Background image -->
+        <div class="absolute inset-0">
+            <img src="assets/images/hero-background.jpg" alt="Punjab Flood Relief" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-black opacity-60"></div>
 
         <div class="relative max-w-6xl mx-auto px-4 py-12 md:py-16">
             <!-- Crisis Counter -->
@@ -450,9 +453,8 @@
     <section class="max-w-4xl mx-auto px-4 py-12">
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
             <div class="md:flex">
-                <div class="md:w-1/2 bg-gray-200 min-h-64 flex items-center justify-center">
-                    <i class="fas fa-image text-gray-400 text-6xl"></i>
-                    <!-- Replace with actual image -->
+                <div class="md:w-1/2 relative overflow-hidden">
+                    <img src="assets/images/volunteer-1.jpg" alt="Volunteers rebuilding homes in Punjab" class="w-full h-full object-cover min-h-64">
                 </div>
                 <div class="md:w-1/2 p-8">
                     <h3 class="font-display text-2xl font-bold text-gray-900 mb-4">
@@ -461,14 +463,27 @@
                     <p class="text-gray-700 leading-relaxed mb-6">
                         In September 2025, the worst floods in 40 years devastated Punjab. 350,000 families lost everything. When we met 8-year-old Simran, she was doing homework under a tarp in a relief camp. Her family's home was swept away. Today, thanks to donors like you, she studies at a real desk, in a real home, with a real future ahead. This is why we build - not just homes, but hope. Your donation doesn't just provide shelter; it restores dignity, enables education, and rebuilds communities.
                     </p>
-                    <button class="text-saffron font-semibold flex items-center space-x-2 hover:space-x-3 transition-all">
-                        <span>Watch Simran's Story (2 mins)</span>
+                    <button onclick="document.getElementById('video-modal').classList.remove('hidden')" class="text-saffron font-semibold flex items-center space-x-2 hover:space-x-3 transition-all cursor-pointer">
+                        <span>Watch The Crisis Unfold (1 min)</span>
                         <i class="fas fa-play-circle text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4" onclick="this.classList.add('hidden'); document.getElementById('flood-video').pause();">
+        <div class="relative max-w-4xl w-full" onclick="event.stopPropagation()">
+            <button onclick="document.getElementById('video-modal').classList.add('hidden'); document.getElementById('flood-video').pause();" class="absolute -top-10 right-0 text-white text-3xl hover:text-saffron">
+                <i class="fas fa-times-circle"></i>
+            </button>
+            <video id="flood-video" controls class="w-full rounded-xl">
+                <source src="assets/videos/punjab-floods-story.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
 
     <!-- Trust & Transparency -->
     <section class="bg-trust-blue text-white py-12">
@@ -499,6 +514,79 @@
                     Download Detailed Financial Report
                 </button>
             </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Gallery - PROOF OF WORK -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center mb-10">
+            <h3 class="font-display text-3xl font-bold text-gray-900 mb-4">
+                Volunteers in Action
+            </h3>
+            <p class="text-lg text-gray-600">Real people, real impact - See the work happening on the ground</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all group">
+                <img src="assets/images/volunteer-2.jpg" alt="Construction work in progress" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="font-semibold">Building Foundations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all group">
+                <img src="assets/images/volunteer-3.jpg" alt="Materials being organized" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="font-semibold">Organizing Materials</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all group">
+                <img src="assets/images/volunteer-4.jpg" alt="Community working together" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="font-semibold">Community Effort</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all group">
+                <img src="assets/images/volunteer-5.jpg" alt="Volunteers at construction site" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="font-semibold">On-site Work</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all group">
+                <img src="assets/images/volunteer-6.jpg" alt="Progress being made" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="font-semibold">Making Progress</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all group">
+                <img src="assets/images/volunteer-1.jpg" alt="Team rebuilding homes" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="font-semibold">Rebuilding Lives</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-10">
+            <p class="text-gray-600 mb-4">Photos updated weekly from our 12 active construction sites</p>
+            <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})" class="bg-saffron text-white font-bold px-8 py-3 rounded-xl hover:bg-saffron-dark transition">
+                Join These Volunteers - Donate Now
+            </button>
         </div>
     </section>
 
