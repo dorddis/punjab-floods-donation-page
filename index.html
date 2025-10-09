@@ -1017,57 +1017,57 @@
     </div>
 
     <!-- Exit Intent Popup -->
-    <div id="exit-intent-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 z-[70] flex items-center justify-center p-4 modal-fade-in">
-        <div class="bg-white rounded-3xl max-w-lg w-full relative shadow-2xl overflow-hidden exit-popup-scale" onclick="event.stopPropagation()">
+    <div id="exit-intent-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 z-[70] flex items-center justify-center p-4 modal-fade-in" onclick="closeExitIntent()">
+        <div class="bg-white rounded-2xl max-w-md w-full relative shadow-2xl overflow-hidden my-auto max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
             <!-- Saffron accent strip at top -->
-            <div class="h-2 bg-gradient-to-r from-saffron via-orange-500 to-saffron"></div>
+            <div class="h-1.5 bg-gradient-to-r from-saffron via-orange-500 to-saffron"></div>
 
-            <button onclick="closeExitIntent()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-700 text-2xl z-10 transition-colors">
+            <button onclick="closeExitIntent()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 text-xl z-10 transition-colors">
                 <i class="fas fa-times-circle"></i>
             </button>
 
             <div class="text-center px-8 pt-8 pb-8">
                 <!-- Icon with gradient background -->
-                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-saffron/20 to-orange-100 rounded-full mb-6 relative">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-saffron/20 to-orange-100 rounded-full mb-6 relative">
                     <div class="absolute inset-0 bg-gradient-to-br from-saffron/30 to-orange-200 rounded-full animate-pulse"></div>
-                    <i class="fas fa-hand-holding-heart text-saffron text-4xl relative z-10"></i>
+                    <i class="fas fa-hand-holding-heart text-saffron text-3xl relative z-10"></i>
                 </div>
 
-                <h3 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+                <h3 class="font-display text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight">
                     Wait! One Moment...
                 </h3>
 
-                <p class="text-lg text-gray-800 mb-3 font-semibold">
+                <p class="text-base text-gray-800 mb-3 font-semibold">
                     <strong class="text-saffron">350,000 families</strong> are still waiting in temporary shelters
                 </p>
 
-                <p class="text-gray-600 mb-6 leading-relaxed">
+                <p class="text-sm text-gray-600 mb-6 leading-relaxed">
                     Winter begins in <strong class="text-red-600">52 days</strong>. Your <strong class="text-saffron">₹500</strong> donation (just ₹17/day) provides <strong>50 bricks</strong> toward a permanent home.
                 </p>
 
                 <!-- Matching offer badge - more prominent -->
                 <div class="bg-gradient-to-r from-hope-green/20 to-emerald-50 border-2 border-hope-green rounded-2xl p-5 mb-6 relative overflow-hidden">
                     <div class="absolute top-0 right-0 -mt-1 -mr-1">
-                        <span class="inline-block bg-hope-green text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-xl">
+                        <span class="inline-block bg-hope-green text-white text-[10px] font-bold px-2.5 py-1 rounded-bl-lg rounded-tr-xl">
                             LIMITED TIME
                         </span>
                     </div>
-                    <p class="text-hope-green font-bold text-lg mb-1">
+                    <p class="text-hope-green font-bold text-base mb-1">
                         <i class="fas fa-gift"></i> Your Donation Doubled!
                     </p>
-                    <p class="text-sm text-gray-700">
+                    <p class="text-xs text-gray-700">
                         Every ₹1 = ₹2 until Sunday midnight
                     </p>
                     <div class="flex items-center justify-center gap-3 mt-3">
-                        <span class="text-2xl font-bold text-gray-900">₹500</span>
-                        <i class="fas fa-arrow-right text-hope-green"></i>
-                        <span class="text-3xl font-bold text-hope-green">₹1,000</span>
-                        <span class="text-sm text-gray-600">impact</span>
+                        <span class="text-xl font-bold text-gray-900">₹500</span>
+                        <i class="fas fa-arrow-right text-hope-green text-sm"></i>
+                        <span class="text-2xl font-bold text-hope-green">₹1,000</span>
+                        <span class="text-xs text-gray-600">impact</span>
                     </div>
                 </div>
 
                 <!-- Primary CTA with pulse effect -->
-                <button onclick="closeExitIntentAndDonate()" class="w-full bg-gradient-to-r from-saffron to-orange-500 hover:from-saffron-dark hover:to-orange-600 text-white font-bold text-lg px-8 py-5 rounded-xl shadow-xl transition-all transform hover:scale-[1.02] mb-4 pulse-cta">
+                <button onclick="closeExitIntentAndDonate()" class="w-full bg-gradient-to-r from-saffron to-orange-500 hover:from-saffron-dark hover:to-orange-600 text-white font-bold text-base px-8 py-4 rounded-xl shadow-xl transition-all transform hover:scale-[1.02] mb-4 pulse-cta">
                     <i class="fas fa-heart"></i> Yes, I'll Help Build Home #348
                 </button>
 
@@ -1468,6 +1468,10 @@
 
         // ===== EXIT INTENT POPUP =====
         let exitIntentShown = false;
+        let lastScrollY = 0;
+        let maxScrollDepth = 0;
+        let inactivityTimer = null;
+        let userEngaged = false;
 
         function closeExitIntent() {
             const modal = document.getElementById('exit-intent-modal');
@@ -1480,34 +1484,83 @@
             document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'});
         }
 
-        // Detect exit intent (mouse leaving viewport from top)
-        document.addEventListener('mouseleave', (e) => {
-            // Only trigger if:
-            // 1. Mouse is leaving from the top
-            // 2. Exit intent hasn't been shown yet
-            // 3. User has scrolled at least 25% down the page (to avoid immediate trigger)
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-
-            if (!exitIntentShown && e.clientY <= 0 && scrollPercent > 25) {
+        function showExitIntent() {
+            if (!exitIntentShown) {
                 exitIntentShown = true;
                 const modal = document.getElementById('exit-intent-modal');
                 modal.classList.remove('hidden');
             }
+        }
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+
+            // Only start timer if user is engaged (scrolled past 25%)
+            if (userEngaged && !exitIntentShown) {
+                inactivityTimer = setTimeout(() => {
+                    showExitIntent();
+                }, 45000); // 45 seconds
+            }
+        }
+
+        // Desktop: Detect exit intent (mouse leaving viewport from top)
+        document.addEventListener('mouseleave', (e) => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+            if (!exitIntentShown && e.clientY <= 0 && scrollPercent > 25) {
+                showExitIntent();
+            }
         });
 
-        // Also show exit intent on back button (for mobile)
+        // Mobile: Back button detection
         let isBackButtonPressed = false;
         window.addEventListener('popstate', () => {
             if (!exitIntentShown && !isBackButtonPressed) {
                 isBackButtonPressed = true;
-                exitIntentShown = true;
-                const modal = document.getElementById('exit-intent-modal');
-                modal.classList.remove('hidden');
-
+                showExitIntent();
                 // Re-push state so user doesn't leave if they click back again
                 history.pushState(null, null, location.href);
             }
         });
+
+        // Mobile: Scroll-up detection (after scrolling down 50%, scrolling up 10%+)
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const scrollPercent = (currentScrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+            // Track maximum scroll depth
+            if (scrollPercent > maxScrollDepth) {
+                maxScrollDepth = scrollPercent;
+            }
+
+            // Mark user as engaged if they've scrolled past 25%
+            if (scrollPercent > 25) {
+                userEngaged = true;
+            }
+
+            // Detect rapid scroll-up after being engaged (50%+ deep)
+            if (maxScrollDepth > 50 && currentScrollY < lastScrollY) {
+                const scrollUpPercent = ((lastScrollY - currentScrollY) / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+                // If scrolled up more than 10% quickly
+                if (scrollUpPercent > 10 && !exitIntentShown) {
+                    showExitIntent();
+                }
+            }
+
+            lastScrollY = currentScrollY;
+
+            // Reset inactivity timer on scroll
+            resetInactivityTimer();
+        });
+
+        // Reset inactivity timer on user interaction
+        ['mousedown', 'touchstart', 'keydown', 'mousemove', 'touchmove'].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, { passive: true });
+        });
+
+        // Start inactivity timer when page loads
+        resetInactivityTimer();
 
         // Push initial state for back button detection
         history.pushState(null, null, location.href);
