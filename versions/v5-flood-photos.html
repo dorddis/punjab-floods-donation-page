@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebuild Punjab - Help 350,000 Families Come Home | Global Sikhs</title>
+    <meta name="description" content="Help rebuild homes for 350,000 families affected by Punjab's worst floods in 40 years. Every ₹500 provides 50 bricks. Donations matched 2x until Sunday.">
+    <link rel="icon" type="image/png" href="assets/images/global-sikhs-logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        saffron: '#FF6B35',
+                        'saffron-dark': '#E85A28',
+                        'trust-blue': '#1E3A8A',
+                        'hope-green': '#10B981',
+                        'warm-sand': '#FAFAF9',
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hide scrollbar but keep functionality */
+        ::-webkit-scrollbar { display: none; }
+        html, body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Pulse animation for CTA */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
+        }
+
+        .pulse-cta {
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Counter animation */
+        @keyframes count-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .count-animate {
+            animation: count-up 0.6s ease-out;
+        }
+    </style>
+</head>
+
+<body class="bg-warm-sand">
+
+    <!-- Urgency Banner - CRITICAL -->
+    <div class="bg-gradient-to-r from-red-600 to-red-500 text-white py-2 px-4 text-center text-sm font-medium sticky top-0 z-50 shadow-lg">
+        <i class="fas fa-bolt"></i> ACTIVE NOW: Every ₹1 donated = ₹2 (Matched until Sunday midnight)
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-8 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="assets/images/global-sikhs-logo.png" alt="Global Sikhs Logo" class="h-12 w-auto">
+                    <div class="border-l-2 border-gray-300 pl-3">
+                        <span class="font-bold text-lg md:text-xl text-gray-800">Rebuild Punjab</span>
+                        <div class="text-xs text-trust-blue font-medium">Flood Relief Initiative</div>
+                    </div>
+                </div>
+                <button class="p-2 hover:bg-gray-100 rounded-lg transition">
+                    <i class="fa-solid fa-bars text-gray-600 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section - EMOTIONAL HOOK -->
+    <section class="relative bg-gradient-to-br from-gray-800 to-gray-900 text-white overflow-hidden">
+        <!-- Background image -->
+        <div class="absolute inset-0">
+            <img src="assets/images/hero-background.jpg" alt="Punjab Flood Relief" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+
+        <div class="relative max-w-6xl mx-auto px-4 py-12 md:py-16">
+            <!-- Crisis Counter -->
+            <div class="mb-6 space-y-2">
+                <div class="inline-block bg-red-500/90 text-white px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm">
+                    <i class="fas fa-exclamation-triangle"></i> URGENT
+                </div>
+                <h1 class="font-display text-4xl md:text-6xl font-bold leading-tight mb-4">
+                    350,000 Families<br/>Still Without Homes
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200 max-w-2xl leading-relaxed">
+                    One month after the worst flood in 40 years. Your donation today becomes a family's shelter tomorrow.
+                </p>
+            </div>
+
+            <!-- Trust Badges Row -->
+            <div class="flex flex-wrap gap-4 mb-8 text-sm">
+                <div class="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg">
+                    <i class="fas fa-check-circle text-hope-green"></i>
+                    <span>Government Verified</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg">
+                    <i class="fas fa-shield-alt text-hope-green"></i>
+                    <span>80G Tax Benefits</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg">
+                    <i class="fas fa-home text-hope-green"></i>
+                    <span>347 Homes Completed</span>
+                </div>
+            </div>
+
+            <!-- Primary CTA -->
+            <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})"
+                    class="pulse-cta bg-saffron hover:bg-saffron-dark text-white font-bold text-lg px-8 py-4 rounded-xl shadow-2xl transition-all transform hover:scale-105">
+                <i class="fas fa-heart"></i> Start Building Now - From ₹500
+            </button>
+
+            <p class="mt-4 text-sm text-gray-300">
+                <i class="fas fa-users"></i> Join 47 donors who gave today
+            </p>
+        </div>
+
+        <!-- Urgency Timer -->
+        <div class="relative bg-blue-600 text-white py-3 px-4 text-center font-bold">
+            <i class="fas fa-snowflake"></i> Winter Begins in 52 Days - Families in Temporary Shelters Need Permanent Homes Now
+        </div>
+    </section>
+
+    <!-- Impact Calculator - TANGIBLE VISUALIZATION -->
+    <section class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+        <div class="text-center mb-10">
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                See Your Impact in Real Time
+            </h2>
+            <p class="text-lg text-gray-600">Every contribution builds Punjab, brick by brick</p>
+        </div>
+
+        <!-- Tangible Impact Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <!-- 50 Bricks -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-gray-100 hover:border-saffron transition-all hover:shadow-xl">
+                <div class="text-center mb-4">
+                    <div class="inline-block p-4 bg-red-50 rounded-full mb-3">
+                        <i class="fas fa-cube text-red-600 text-4xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">₹500</div>
+                    <div class="text-lg font-semibold text-saffron mb-2">50 Bricks</div>
+                    <p class="text-sm text-gray-600">Foundation for hope</p>
+                </div>
+                <button onclick="selectAmount(500)" class="w-full bg-saffron hover:bg-saffron-dark text-white font-bold py-3 rounded-xl transition">
+                    Donate 50 Bricks
+                </button>
+            </div>
+
+            <!-- Room Foundation -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-saffron hover:shadow-2xl transform hover:-translate-y-1 transition-all">
+                <div class="absolute top-4 right-4">
+                    <span class="bg-saffron text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+                </div>
+                <div class="text-center mb-4">
+                    <div class="inline-block p-4 bg-gray-100 rounded-full mb-3">
+                        <i class="fas fa-hammer text-gray-700 text-4xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">₹2,500</div>
+                    <div class="text-lg font-semibold text-saffron mb-2">Foundation Materials</div>
+                    <p class="text-sm text-gray-600">250 bricks + 5 bags cement + 15 days labor</p>
+                </div>
+                <button onclick="selectAmount(2500)" class="w-full bg-saffron hover:bg-saffron-dark text-white font-bold py-3 rounded-xl transition">
+                    Build Foundation
+                </button>
+            </div>
+
+            <!-- Complete Home -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-gray-100 hover:border-saffron transition-all hover:shadow-xl">
+                <div class="text-center mb-4">
+                    <div class="inline-block p-4 bg-saffron/10 rounded-full mb-3">
+                        <i class="fas fa-home text-saffron text-4xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">₹3,50,000</div>
+                    <div class="text-lg font-semibold text-saffron mb-2">Complete Home</div>
+                    <p class="text-sm text-gray-600">Change a family's life forever</p>
+                </div>
+                <button onclick="selectAmount(350000)" class="w-full bg-trust-blue hover:bg-blue-900 text-white font-bold py-3 rounded-xl transition">
+                    Build Complete Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Live Progress Tracker -->
+        <div class="bg-gradient-to-r from-saffron to-orange-500 rounded-2xl shadow-2xl p-8 text-white">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                        <span class="text-sm font-bold uppercase tracking-wide">LIVE</span>
+                    </div>
+                    <h3 class="text-2xl font-bold">Home #348 in Progress</h3>
+                    <p class="text-white/90">Help us complete this home TODAY</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-4xl font-bold">67%</div>
+                    <div class="text-sm">Complete</div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="bg-white/20 rounded-full h-4 mb-4 overflow-hidden">
+                <div class="bg-white h-full rounded-full transition-all duration-500" style="width: 67%"></div>
+            </div>
+
+            <div class="flex justify-between text-sm">
+                <span>₹2,33,000 raised</span>
+                <span>₹3,50,000 goal</span>
+            </div>
+
+            <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})"
+                    class="mt-6 w-full bg-white text-saffron font-bold py-3 rounded-xl hover:bg-gray-100 transition">
+                Help Complete Home #348 →
+            </button>
+        </div>
+    </section>
+
+    <!-- Donation Form - THE CONVERSION POINT -->
+    <section id="donation-form" class="bg-white py-12 md:py-16">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Choose Your Path to Impact
+                </h2>
+                <p class="text-lg text-gray-600">Every contribution helps rebuild lives</p>
+            </div>
+
+            <!-- Donation Amount Selection -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                <button onclick="selectAmount(500)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 transition-all">
+                    <div class="text-2xl font-bold text-gray-900">₹500</div>
+                    <div class="text-sm text-gray-600">50 Bricks</div>
+                </button>
+                <button onclick="selectAmount(1000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 transition-all">
+                    <div class="text-2xl font-bold text-gray-900">₹1,000</div>
+                    <div class="text-sm text-gray-600">Foundation Support</div>
+                </button>
+                <button onclick="selectAmount(2500)" class="donation-btn border-2 border-saffron bg-saffron/10 rounded-xl p-4 transition-all">
+                    <div class="text-2xl font-bold text-saffron">₹2,500</div>
+                    <div class="text-xs text-saffron font-medium">MOST POPULAR</div>
+                </button>
+                <button onclick="selectAmount(10000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 transition-all">
+                    <div class="text-2xl font-bold text-gray-900">₹10,000</div>
+                    <div class="text-sm text-gray-600">Complete Room</div>
+                </button>
+                <button onclick="selectAmount(25000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 transition-all">
+                    <div class="text-2xl font-bold text-gray-900">₹25,000</div>
+                    <div class="text-sm text-gray-600">Kitchen + Bath</div>
+                </button>
+                <button onclick="toggleCustomAmount()" class="donation-btn border-2 border-gray-200 hover:border-trust-blue bg-white hover:bg-blue-50 rounded-xl p-4 transition-all">
+                    <div class="text-2xl font-bold text-trust-blue">Custom</div>
+                    <div class="text-sm text-gray-600">You Decide</div>
+                </button>
+            </div>
+
+            <!-- Custom Amount Input (Hidden by default) -->
+            <div id="custom-amount-section" class="hidden mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Enter Custom Amount</label>
+                <div class="relative">
+                    <span class="absolute left-4 top-4 text-gray-500 text-xl">₹</span>
+                    <input type="number" id="custom-amount"
+                           class="w-full pl-10 pr-4 py-4 text-2xl font-bold border-2 border-gray-300 rounded-xl focus:border-saffron focus:outline-none"
+                           placeholder="5000" min="100">
+                </div>
+            </div>
+
+            <!-- Selected Amount Display -->
+            <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="text-sm text-gray-600 mb-1">Your donation amount</div>
+                        <div id="selected-amount" class="text-3xl font-bold text-gray-900">₹2,500</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600 mb-1">With matching</div>
+                        <div id="matched-amount" class="text-3xl font-bold text-hope-green">₹5,000</div>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-center space-x-2">
+                    <input type="checkbox" id="monthly-checkbox" class="w-5 h-5 text-saffron">
+                    <label for="monthly-checkbox" class="text-sm text-gray-700">
+                        Make this monthly <span class="text-saffron font-semibold">(Build 1 home per year)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Email Input -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email for receipt & updates</label>
+                <input type="email" class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-saffron focus:outline-none"
+                       placeholder="your@email.com">
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-3">Choose payment method</label>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <button class="border-2 border-gray-300 hover:border-saffron rounded-xl p-4 flex flex-col items-center justify-center transition-all">
+                        <i class="fab fa-google-pay text-4xl mb-2" style="color: #5f6368;"></i>
+                        <span class="text-sm font-medium">Google Pay</span>
+                    </button>
+                    <button class="border-2 border-gray-300 hover:border-saffron rounded-xl p-4 flex flex-col items-center justify-center transition-all">
+                        <i class="fas fa-mobile-alt text-4xl mb-2 text-purple-600"></i>
+                        <span class="text-sm font-medium">PhonePe</span>
+                    </button>
+                    <button class="border-2 border-gray-300 hover:border-saffron rounded-xl p-4 flex flex-col items-center justify-center transition-all">
+                        <i class="fas fa-university text-4xl mb-2 text-trust-blue"></i>
+                        <span class="text-sm font-medium">Paytm</span>
+                    </button>
+                    <button class="border-2 border-gray-300 hover:border-saffron rounded-xl p-4 flex flex-col items-center justify-center transition-all">
+                        <i class="fas fa-credit-card text-4xl mb-2 text-gray-600"></i>
+                        <span class="text-sm font-medium">Card</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Security & Trust Info -->
+            <div class="flex flex-wrap gap-4 justify-center mb-6 text-sm text-gray-600">
+                <span><i class="fas fa-lock text-hope-green"></i> Secure payment</span>
+                <span><i class="fas fa-receipt text-hope-green"></i> Instant 80G receipt</span>
+                <span><i class="fab fa-whatsapp text-hope-green"></i> WhatsApp updates</span>
+            </div>
+
+            <!-- Final CTA Button -->
+            <button onclick="completeDonation()" class="w-full bg-saffron hover:bg-saffron-dark text-white font-bold text-xl py-5 rounded-xl shadow-lg transition-all transform hover:scale-[1.02]">
+                <i class="fas fa-heart"></i> Secure My Donation
+            </button>
+
+            <p class="text-center text-sm text-gray-500 mt-4">
+                By donating, you agree to receive construction updates via email and WhatsApp
+            </p>
+        </div>
+    </section>
+
+    <!-- Recent Donors - SOCIAL PROOF (TeamTrees style) -->
+    <section class="bg-warm-sand py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+                Recent Donors - Join the Movement
+            </h3>
+
+            <div class="space-y-3">
+                <!-- Donor Card 1 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-saffron/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-saffron"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Raj from Delhi</div>
+                            <div class="text-sm text-gray-600">donated ₹5,000</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-500">3 minutes ago</div>
+                    </div>
+                </div>
+
+                <!-- Donor Card 2 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-hope-green/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-hope-green"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Priya from Chandigarh</div>
+                            <div class="text-sm text-gray-600">donated ₹500 • "Every brick matters"</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-500">7 minutes ago</div>
+                    </div>
+                </div>
+
+                <!-- Donor Card 3 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-trust-blue/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-users text-trust-blue"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Anonymous</div>
+                            <div class="text-sm text-gray-600">donated ₹25,000</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-500">12 minutes ago</div>
+                    </div>
+                </div>
+
+                <!-- Donor Card 4 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-saffron/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-building text-saffron"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Corporate Group from Mumbai</div>
+                            <div class="text-sm text-gray-600">donated ₹1,00,000</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-500">1 hour ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <div class="inline-block bg-white rounded-full px-6 py-3 shadow-md">
+                    <span class="text-gray-700">₹3,24,500 raised today from </span>
+                    <span class="font-bold text-saffron">127 donors</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Human Story -->
+    <section class="max-w-4xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="md:flex">
+                <div class="md:w-1/2 relative overflow-hidden">
+                    <img src="assets/images/volunteer-1.jpg" alt="Volunteers rebuilding homes in Punjab" class="w-full h-full object-cover min-h-64">
+                </div>
+                <div class="md:w-1/2 p-8">
+                    <h3 class="font-display text-2xl font-bold text-gray-900 mb-4">
+                        Why We Can't Stop Building
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        In September 2025, the worst floods in 40 years devastated Punjab. 350,000 families lost everything. When we met 8-year-old Simran, she was doing homework under a tarp in a relief camp. Her family's home was swept away. Today, thanks to donors like you, she studies at a real desk, in a real home, with a real future ahead. This is why we build - not just homes, but hope. Your donation doesn't just provide shelter; it restores dignity, enables education, and rebuilds communities.
+                    </p>
+                    <button onclick="openVideoModal()" class="text-saffron font-semibold flex items-center space-x-2 hover:space-x-3 transition-all cursor-pointer">
+                        <span>Watch The Crisis Unfold (1 min)</span>
+                        <i class="fas fa-play-circle text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-[60] flex items-center justify-center p-4" onclick="closeVideoModal()">
+        <div class="relative max-w-4xl w-full" onclick="event.stopPropagation()">
+            <button onclick="closeVideoModal()" class="absolute -top-10 right-0 text-white text-3xl hover:text-saffron transition-colors">
+                <i class="fas fa-times-circle"></i>
+            </button>
+            <video id="flood-video" controls preload="metadata" class="w-full rounded-xl shadow-2xl" controlsList="nodownload">
+                <source src="assets/videos/punjab-floods-story.mp4" type="video/mp4">
+                <p class="text-white">Your browser doesn't support HTML5 video. <a href="assets/videos/punjab-floods-story.mp4" class="text-saffron underline">Download the video</a> instead.</p>
+            </video>
+        </div>
+    </div>
+
+    <!-- Trust & Transparency -->
+    <section class="bg-trust-blue text-white py-12">
+        <div class="max-w-4xl mx-auto px-4">
+            <h3 class="font-display text-3xl font-bold mb-8 text-center">
+                Where Your Money Goes
+            </h3>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="text-center">
+                    <div class="text-5xl font-bold mb-2">82%</div>
+                    <div class="text-white/80">Direct construction materials & labor</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold mb-2">12%</div>
+                    <div class="text-white/80">Local workforce wages</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold mb-2">6%</div>
+                    <div class="text-white/80">Operations & monitoring</div>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
+                <div class="text-xl font-bold mb-2">100% Transparency Promise</div>
+                <p class="text-white/90 mb-4">Track your donation with unique ID. Weekly photo updates. Visit construction sites anytime.</p>
+                <button class="text-white font-semibold underline hover:no-underline">
+                    Download Detailed Financial Report
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Crisis - EMOTIONAL IMPACT -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center mb-10">
+            <h3 class="font-display text-3xl font-bold text-gray-900 mb-4">
+                The Crisis We're Fighting
+            </h3>
+            <p class="text-lg text-gray-600">September 2025: The worst floods in 40 years devastated Punjab</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- Image 1 -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+                <img src="assets/images/flood-impact/punjab-floods-1.jpg" alt="Punjab floods devastation" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <!-- Always visible on mobile, hover on desktop -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <p class="font-semibold text-sm md:text-base">Submerged Villages</p>
+                        <p class="text-xs opacity-90">Hindustan Times</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image 2 -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+                <img src="assets/images/flood-impact/punjab-floods-2.jpg" alt="Families displaced by floods" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <p class="font-semibold text-sm md:text-base">Families Displaced</p>
+                        <p class="text-xs opacity-90">BBC News</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image 3 -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+                <img src="assets/images/flood-impact/punjab-floods-3.jpg" alt="Flood impact on communities" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <p class="font-semibold text-sm md:text-base">Communities Under Water</p>
+                        <p class="text-xs opacity-90">The New Indian Express</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image 4 -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+                <img src="assets/images/flood-impact/punjab-floods-4.webp" alt="Emergency response operations" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <p class="font-semibold text-sm md:text-base">Emergency Response</p>
+                        <p class="text-xs opacity-90">Deshabhimani</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image 5 -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+                <img src="assets/images/flood-impact/punjab-floods-5.jpg" alt="Worst floods in 40 years" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <p class="font-semibold text-sm md:text-base">Worst in 40 Years</p>
+                        <p class="text-xs opacity-90">Mint</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image 6 -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg group">
+                <img src="assets/images/flood-impact/punjab-floods-6.jpg" alt="Rescue operations in Punjab" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <p class="font-semibold text-sm md:text-base">Rescue Operations</p>
+                        <p class="text-xs opacity-90">ANI / The News Mill</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-10">
+            <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 mb-6 max-w-2xl mx-auto">
+                <p class="text-red-800 font-semibold mb-2">
+                    <i class="fas fa-exclamation-circle"></i> 350,000 families still living in temporary shelters
+                </p>
+                <p class="text-gray-700 text-sm">
+                    Winter begins in 52 days. These families need permanent homes NOW.
+                </p>
+            </div>
+            <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})" class="bg-saffron text-white font-bold px-8 py-3 rounded-xl hover:bg-saffron-dark transition shadow-lg">
+                Help Rebuild Punjab - Donate Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Share Campaign Section -->
+    <section class="bg-gradient-to-br from-blue-50 to-purple-50 py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="font-display text-3xl font-bold text-gray-900 mb-4">
+                Multiply Your Impact - Share This Campaign
+            </h3>
+            <p class="text-lg text-gray-600 mb-8">
+                Can't donate right now? Your share could inspire others to help rebuild Punjab
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 mb-6">
+                <!-- Facebook Share -->
+                <button onclick="shareOnFacebook()"
+                        class="flex items-center space-x-3 bg-white hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-600 rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg group">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" class="text-blue-600">
+                        <path fill-rule="evenodd" d="M20,12 C20,7.58171875 16.4182812,4 12,4 C7.58171875,4 4,7.58171875 4,12 C4,15.9930312 6.92548437,19.3026562 10.75,19.9028125 L10.75,14.3125 L8.71875,14.3125 L8.71875,12 L10.75,12 L10.75,10.2375 C10.75,8.2325 11.9443437,7.125 13.7717187,7.125 C14.6469844,7.125 15.5625,7.28125 15.5625,7.28125 L15.5625,9.25 L14.5537187,9.25 C13.5599219,9.25 13.25,9.86667187 13.25,10.4993281 L13.25,12 L15.46875,12 L15.1140625,14.3125 L13.25,14.3125 L13.25,19.9028125 C17.0745156,19.3026562 20,15.9930312 20,12"></path>
+                    </svg>
+                    <span class="font-semibold text-gray-700 group-hover:text-blue-600">Share on Facebook</span>
+                </button>
+
+                <!-- Twitter/X Share -->
+                <button onclick="shareOnTwitter()"
+                        class="flex items-center space-x-3 bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-gray-900 rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg group">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" class="text-gray-900">
+                        <path d="M13.303 10.771 19.123 4h-1.38L12.69 9.88 8.655 4H4l6.103 8.89L4 19.993h1.38l5.335-6.21 4.262 6.21h4.655l-6.33-9.22h.001Zm-1.889 2.198-.618-.885-4.92-7.045h2.118l3.97 5.686.619.885 5.16 7.39h-2.117l-4.212-6.03Z"></path>
+                    </svg>
+                    <span class="font-semibold text-gray-700 group-hover:text-gray-900">Share on X</span>
+                </button>
+
+                <!-- LinkedIn Share -->
+                <button onclick="shareOnLinkedIn()"
+                        class="flex items-center space-x-3 bg-white hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-700 rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg group">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" class="text-blue-700">
+                        <path fill-rule="evenodd" d="M17.6348754,17.6337778 L15.2626394,17.6337778 L15.2626394,13.9202963 C15.2626394,13.0346667 15.2469351,11.8957037 14.0294085,11.8957037 C12.7943998,11.8957037 12.6059484,12.861037 12.6059484,13.8568889 L12.6059484,17.6337778 L10.2337124,17.6337778 L10.2337124,9.99822222 L12.5099448,9.99822222 L12.5099448,11.0423704 L12.5425386,11.0423704 C12.8592911,10.4417778 13.633542,9.80888889 14.7879551,9.80888889 C17.1913034,9.80888889 17.6348754,11.3899259 17.6348754,13.4459259 L17.6348754,17.6337778 Z M7.55835401,8.95496296 C6.79773325,8.95496296 6.18289566,8.33837037 6.18289566,7.57925926 C6.18289566,6.81925926 6.79773325,6.20266667 7.55835401,6.20266667 C8.31690063,6.20266667 8.93351606,6.81925926 8.93351606,7.57925926 C8.93351606,8.33837037 8.31690063,8.95496296 7.55835401,8.95496296 Z M6.37134709,17.6337778 L8.74536094,17.6337778 L8.74536094,9.99822222 L6.37134709,9.99822222 L6.37134709,17.6337778 Z M18.8165488,4 L5.18078447,4 C4.52950109,4 4,4.51674074 4,5.15377778 L4,18.8456296 C4,19.4826667 4.52950109,20 5.18078447,20 L18.8165488,20 C19.4693137,20 20,19.4826667 20,18.8456296 L20,5.15377778 C20,4.51674074 19.4693137,4 18.8165488,4 L18.8165488,4 Z"></path>
+                    </svg>
+                    <span class="font-semibold text-gray-700 group-hover:text-blue-700">Share on LinkedIn</span>
+                </button>
+
+                <!-- Copy Link -->
+                <button onclick="copyPageLink()" id="copy-link-btn"
+                        class="flex items-center space-x-3 bg-white hover:bg-green-50 border-2 border-gray-200 hover:border-green-600 rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg group">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" class="text-gray-600 group-hover:text-green-600">
+                        <path fill-rule="evenodd" d="M7.7859,10.3591 C9.3999,8.7461 12.0259,8.7461 13.6399,10.3591 L13.6399,10.3591 L14.0689,10.7891 L13.3619,11.4961 L12.9329,11.0661 C11.7089,9.8451 9.7179,9.8431 8.4929,11.0661 L8.4929,11.0661 L5.9199,13.6411 C5.3269,14.2331 4.9999,15.0211 4.9999,15.8601 C4.9999,16.6991 5.3269,17.4871 5.9199,18.0801 C7.1059,19.2661 9.1729,19.2661 10.3599,18.0801 L10.3599,18.0801 L11.9429,16.4981 L12.6499,17.2051 L11.0669,18.7871 C10.2849,19.5691 9.2459,20.0001 8.1399,20.0001 C7.0339,20.0001 5.9939,19.5691 5.2129,18.7871 C4.4309,18.0061 3.9999,16.9661 3.9999,15.8601 C3.9999,14.7551 4.4309,13.7151 5.2129,12.9341 L5.2129,12.9341 Z M15.8606,3.9999 C16.9666,3.9999 18.0056,4.4309 18.7876,5.2129 C19.5696,5.9939 19.9996,7.0339 19.9996,8.1399 C19.9996,9.2449 19.5696,10.2849 18.7876,11.0669 L18.7876,11.0669 L16.2136,13.6409 C15.4066,14.4469 14.3466,14.8509 13.2866,14.8509 C12.2266,14.8509 11.1666,14.4469 10.3596,13.6409 L10.3596,13.6409 L9.9306,13.2109 L10.6376,12.5039 L11.0666,12.9339 C12.2926,14.1569 14.2836,14.1579 15.5066,12.9339 L15.5066,12.9339 L18.0806,10.3589 C18.6736,9.7669 18.9996,8.9789 18.9996,8.1399 C18.9996,7.3009 18.6736,6.5129 18.0806,5.9199 C16.8936,4.7339 14.8266,4.7339 13.6406,5.9199 L13.6406,5.9199 L12.0576,7.5019 L11.3506,6.7949 L12.9336,5.2129 C13.7146,4.4309 14.7546,3.9999 15.8606,3.9999 Z"></path>
+                    </svg>
+                    <span class="font-semibold text-gray-700 group-hover:text-green-600" id="copy-link-text">Copy Link</span>
+                </button>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 max-w-2xl mx-auto shadow-lg">
+                <p class="text-sm text-gray-600 mb-2">Share this message:</p>
+                <p class="text-gray-800 italic">
+                    "350,000 families in Punjab still don't have homes after devastating floods. Help rebuild lives - every ₹500 provides 50 bricks. Donations matched 2x until Sunday! 🏠"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="max-w-4xl mx-auto px-4 py-12">
+        <h3 class="font-display text-3xl font-bold text-gray-900 mb-8 text-center">
+            Still Thinking? We've Got Answers
+        </h3>
+
+        <div class="space-y-4">
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h4 class="font-bold text-gray-900 mb-2">How quickly will my donation be used?</h4>
+                <p class="text-gray-700">Within 72 hours. You'll receive photos of materials purchased with your contribution.</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h4 class="font-bold text-gray-900 mb-2">Can I visit the construction site?</h4>
+                <p class="text-gray-700">Yes! We organize donor visits every Saturday. You'll receive an invitation after donating.</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h4 class="font-bold text-gray-900 mb-2">What if I can't afford ₹500?</h4>
+                <p class="text-gray-700">Every rupee helps. Even ₹100 buys 10 bricks. <a href="#donation-form" class="text-saffron font-semibold">Click here to donate any amount</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="bg-gradient-to-r from-saffron to-orange-500 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">
+                Be Part of Something Bigger
+            </h2>
+
+            <div class="grid grid-cols-3 gap-6 mb-10">
+                <div>
+                    <div class="text-4xl font-bold mb-2">12,847</div>
+                    <div class="text-white/90">Total Donors</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">347</div>
+                    <div class="text-white/90">Homes Completed</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">1,388</div>
+                    <div class="text-white/90">Lives Changed</div>
+                </div>
+            </div>
+
+            <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})"
+                    class="bg-white text-saffron font-bold text-xl px-10 py-5 rounded-xl shadow-2xl hover:bg-gray-100 transition-all transform hover:scale-105">
+                Join the Rebuild Punjab Movement
+            </button>
+
+            <div class="mt-8 text-sm text-white/80 space-x-6">
+                <a href="#" class="hover:underline">Donate Materials</a>
+                <a href="#" class="hover:underline">Volunteer</a>
+                <a href="#" class="hover:underline">Corporate Partnership</a>
+                <a href="#" class="hover:underline">Share Campaign</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col items-center mb-6">
+                <img src="assets/images/global-sikhs-logo.png" alt="Global Sikhs" class="h-16 w-auto mb-3 opacity-80">
+                <p class="text-center">&copy; 2025 Rebuild Punjab - United Sikhs Initiative. All rights reserved.</p>
+            </div>
+            <div class="mt-4 space-x-4">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.theglobalsikhs.org/rebuildpunjab" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Share on Facebook">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?url=https://www.theglobalsikhs.org/rebuildpunjab&text=Help%20rebuild%20Punjab%20-%20350,000%20families%20need%20homes%20after%20devastating%20floods" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Share on Twitter/X">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="https://www.instagram.com/theglobalsikhs" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Follow on Instagram">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="https://wa.me/?text=Help%20rebuild%20Punjab%20after%20devastating%20floods.%20Donations%20matched%202x!%20https://www.theglobalsikhs.org/rebuildpunjab" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Share on WhatsApp">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Mobile Footer CTA (appears after scroll) -->
+    <div id="sticky-footer" class="fixed bottom-0 left-0 right-0 bg-white shadow-2xl p-4 z-50 hidden md:hidden border-t-2 border-saffron">
+        <div class="flex items-center justify-between max-w-6xl mx-auto">
+            <div>
+                <div class="text-sm text-gray-600">Help Build Home #348</div>
+                <div class="text-lg font-bold text-gray-900">From ₹500</div>
+            </div>
+            <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})"
+                    class="bg-saffron text-white font-bold px-6 py-3 rounded-xl">
+                Donate Now
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        let selectedAmountValue = 2500;
+
+        function selectAmount(amount) {
+            selectedAmountValue = amount;
+            updateAmountDisplay();
+
+            // Hide custom input if preset selected
+            document.getElementById('custom-amount-section').classList.add('hidden');
+
+            // Visual feedback
+            document.querySelectorAll('.donation-btn').forEach(btn => {
+                btn.classList.remove('border-saffron', 'bg-saffron/10');
+                btn.classList.add('border-gray-200');
+            });
+            event.target.closest('.donation-btn').classList.add('border-saffron', 'bg-saffron/10');
+
+            // Smooth scroll to form
+            document.getElementById('donation-form').scrollIntoView({behavior: 'smooth', block: 'center'});
+        }
+
+        function toggleCustomAmount() {
+            const section = document.getElementById('custom-amount-section');
+            section.classList.toggle('hidden');
+            if (!section.classList.contains('hidden')) {
+                document.getElementById('custom-amount').focus();
+            }
+        }
+
+        function updateAmountDisplay() {
+            document.getElementById('selected-amount').textContent = `₹${selectedAmountValue.toLocaleString('en-IN')}`;
+            document.getElementById('matched-amount').textContent = `₹${(selectedAmountValue * 2).toLocaleString('en-IN')}`;
+        }
+
+        // Update amount when custom input changes
+        document.getElementById('custom-amount')?.addEventListener('input', (e) => {
+            const value = parseInt(e.target.value) || 0;
+            if (value >= 100) {
+                selectedAmountValue = value;
+                updateAmountDisplay();
+            }
+        });
+
+        function completeDonation() {
+            // Mock donation completion
+            alert(`Thank you for your donation of ₹${selectedAmountValue.toLocaleString('en-IN')}!\n\nYou will receive:\n✓ Email receipt with 80G certificate\n✓ WhatsApp message with donation ID\n✓ Weekly construction updates\n\nWith matching, your impact is ₹${(selectedAmountValue * 2).toLocaleString('en-IN')}!`);
+        }
+
+        // Show sticky footer after scrolling 50%
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            const stickyFooter = document.getElementById('sticky-footer');
+
+            if (scrollPercent > 50 && window.innerWidth < 768) {
+                stickyFooter.classList.remove('hidden');
+            } else {
+                stickyFooter.classList.add('hidden');
+            }
+        });
+
+        // Initialize
+        updateAmountDisplay();
+
+        // Video Modal Functions
+        function openVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('flood-video');
+            modal.classList.remove('hidden');
+            // Small delay to ensure modal is visible before playing
+            setTimeout(() => {
+                video.play().catch(err => {
+                    console.log('Video autoplay prevented:', err);
+                    // This is normal - browser blocks autoplay, user will click play button
+                });
+            }, 100);
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('flood-video');
+            video.pause();
+            video.currentTime = 0; // Reset to beginning
+            modal.classList.add('hidden');
+        }
+
+        // Close video modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('video-modal');
+                if (!modal.classList.contains('hidden')) {
+                    closeVideoModal();
+                }
+            }
+        });
+
+        // Social Media Sharing Functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Help rebuild Punjab - 350,000 families need homes after devastating floods. Donations matched 2x! 🏠');
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function copyPageLink() {
+            const url = window.location.href;
+
+            // Try to use the modern clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showCopySuccess();
+                }).catch(() => {
+                    // Fallback for older browsers
+                    fallbackCopyToClipboard(url);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyToClipboard(url);
+            }
+        }
+
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                showCopySuccess();
+            } catch (err) {
+                alert('Failed to copy link. Please copy manually: ' + text);
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        function showCopySuccess() {
+            const btn = document.getElementById('copy-link-text');
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.parentElement.classList.add('border-green-600', 'bg-green-50');
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.parentElement.classList.remove('border-green-600', 'bg-green-50');
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
