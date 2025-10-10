@@ -28,8 +28,8 @@
 
     /* Text hierarchy using HSL lightness control */
     --text-primary: hsl(0, 0%, 15%);      /* Titles - darkest */
-    --text-secondary: hsl(0, 0%, 30%);    /* Body text */
-    --text-tertiary: hsl(0, 0%, 50%);     /* De-emphasized text */
+    --text-secondary: hsl(0, 0%, 40%);    /* Body text */
+    --text-tertiary: hsl(0, 0%, 60%);     /* De-emphasized text */
 
     /* Shadow colors */
     --shadow-light: hsla(0, 0%, 0%, 0.06);
@@ -41,6 +41,19 @@
 * {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+}
+
+/* Text Hierarchy Utility Classes */
+.text-primary {
+    color: var(--text-primary) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-tertiary {
+    color: var(--text-tertiary) !important;
 }
 
 .font-display {
