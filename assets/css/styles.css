@@ -1,5 +1,42 @@
 /* Punjab Floods Donation Page - Main Styles */
 
+/* ==================== HSL Color System ==================== */
+:root {
+    /* Saffron variations - Warm CTA color */
+    --saffron-dark: hsl(20, 100%, 45%);
+    --saffron-base: hsl(20, 100%, 61%);
+    --saffron-light: hsl(20, 100%, 75%);
+
+    /* Brand blue variations - Structural/trust elements */
+    --brand-blue-dark: hsl(200, 90%, 35%);
+    --brand-blue-base: hsl(200, 90%, 47%);
+    --brand-blue-light: hsl(200, 90%, 65%);
+
+    /* Trust blue - Deep blue for authority */
+    --trust-blue-dark: hsl(224, 64%, 25%);
+    --trust-blue-base: hsl(224, 64%, 33%);
+    --trust-blue-light: hsl(224, 64%, 45%);
+
+    /* Hope green - Success/positive indicators */
+    --hope-green-dark: hsl(160, 84%, 30%);
+    --hope-green-base: hsl(160, 84%, 39%);
+    --hope-green-light: hsl(160, 84%, 50%);
+
+    /* Warm sand - Background neutrals */
+    --warm-sand-base: hsl(60, 9%, 98%);
+    --warm-sand-dark: hsl(60, 9%, 95%);
+
+    /* Text hierarchy using HSL lightness control */
+    --text-primary: hsl(0, 0%, 15%);      /* Titles - darkest */
+    --text-secondary: hsl(0, 0%, 30%);    /* Body text */
+    --text-tertiary: hsl(0, 0%, 50%);     /* De-emphasized text */
+
+    /* Shadow colors */
+    --shadow-light: hsla(0, 0%, 0%, 0.06);
+    --shadow-medium: hsla(0, 0%, 0%, 0.1);
+    --shadow-dark: hsla(0, 0%, 0%, 0.15);
+}
+
 /* Base Typography */
 * {
     font-family: 'Inter', sans-serif;
@@ -26,8 +63,8 @@ html {
 
 /* Pulse animation for CTA */
 @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
-    50% { box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 hsla(20, 100%, 61%, 0.7); }
+    50% { box-shadow: 0 0 0 10px hsla(20, 100%, 61%, 0); }
 }
 
 .pulse-cta {
@@ -37,12 +74,12 @@ html {
 /* Badge glow animation for Popular badge */
 @keyframes badge-glow {
     0%, 100% {
-        box-shadow: 0 0 8px rgba(255, 107, 53, 0.4),
-                    0 0 16px rgba(255, 107, 53, 0.2);
+        box-shadow: 0 0 8px hsla(20, 100%, 61%, 0.4),
+                    0 0 16px hsla(20, 100%, 61%, 0.2);
     }
     50% {
-        box-shadow: 0 0 12px rgba(255, 107, 53, 0.6),
-                    0 0 24px rgba(255, 107, 53, 0.3);
+        box-shadow: 0 0 12px hsla(20, 100%, 61%, 0.6),
+                    0 0 24px hsla(20, 100%, 61%, 0.3);
     }
 }
 
@@ -126,7 +163,7 @@ html {
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid hsla(0, 0%, 100%, 0.3);
     border-radius: 50%;
     border-top-color: white;
     animation: spin 0.6s linear infinite;
@@ -179,13 +216,13 @@ html {
     left: 0;
     right: 0;
     height: 4px;
-    background: rgba(255, 255, 255, 0.3);
+    background: hsla(0, 0%, 100%, 0.3);
     z-index: 10;
 }
 
 .carousel-progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, #FF6B35, #E85A28);
+    background: linear-gradient(90deg, var(--saffron-base), var(--saffron-dark));
     width: 0%;
     transition: width 0.1s linear;
 }
@@ -204,13 +241,13 @@ html {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
+    background: hsla(0, 0%, 100%, 0.5);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .carousel-dot.active {
-    background: white;
+    background: hsl(0, 0%, 100%);
     width: 24px;
     border-radius: 4px;
 }
@@ -252,10 +289,10 @@ html {
 /* True glassmorphism: semi-transparent gradients + backdrop blur */
 .glass-gradient-amber {
     background: linear-gradient(-45deg,
-        rgba(217, 119, 6, 0.75),
-        rgba(194, 65, 12, 0.80),
-        rgba(154, 52, 18, 0.85),
-        rgba(124, 45, 18, 0.90));
+        hsla(33, 95%, 44%, 0.75),
+        hsla(20, 88%, 40%, 0.80),
+        hsla(12, 67%, 34%, 0.85),
+        hsla(16, 47%, 28%, 0.90));
     background-size: 400% 400%;
     animation: gradientShift 18s ease infinite;
     backdrop-filter: blur(12px);
@@ -264,11 +301,11 @@ html {
 
 .glass-gradient-premium {
     background: linear-gradient(-45deg,
-        rgba(109, 40, 217, 0.75),
-        rgba(91, 33, 182, 0.80),
-        rgba(76, 29, 149, 0.85),
-        rgba(6, 95, 70, 0.80),
-        rgba(4, 120, 87, 0.85));
+        hsla(268, 69%, 50%, 0.75),
+        hsla(268, 69%, 42%, 0.80),
+        hsla(268, 67%, 35%, 0.85),
+        hsla(161, 88%, 20%, 0.80),
+        hsla(161, 93%, 24%, 0.85));
     background-size: 400% 400%;
     animation: gradientShift 20s ease infinite;
     backdrop-filter: blur(12px);
@@ -277,11 +314,11 @@ html {
 
 /* Text shadows for better readability */
 .glass-text-shadow {
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.25), 0 1px 1px hsla(0, 0%, 0%, 0.15);
 }
 
 .subtle-text-shadow {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    text-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.08);
 }
 
 /* ==================== Depth & Layered Shadows ==================== */
@@ -289,25 +326,25 @@ html {
 /* Small shadow for regular stats and cards */
 .stat-card-shadow-sm {
     box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        0 1px 2px rgba(0, 0, 0, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 2px 4px var(--shadow-medium),
+        0 1px 2px var(--shadow-light),
+        inset 0 1px 0 hsla(0, 0%, 100%, 0.1);
 }
 
 /* Medium shadow for important stats */
 .stat-card-shadow-md {
     box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.12),
-        0 2px 4px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 4px 6px hsla(0, 0%, 0%, 0.12),
+        0 2px 4px hsla(0, 0%, 0%, 0.08),
+        inset 0 1px 0 hsla(0, 0%, 100%, 0.15);
 }
 
 /* Large shadow for critical/urgent stats */
 .stat-card-shadow-lg {
     box-shadow:
-        0 10px 15px rgba(0, 0, 0, 0.15),
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        inset 0 2px 0 rgba(255, 255, 255, 0.2);
+        0 10px 15px var(--shadow-dark),
+        0 4px 6px var(--shadow-medium),
+        inset 0 2px 0 hsla(0, 0%, 100%, 0.2);
 }
 
 /* Hover shadow for interactive elements */
@@ -318,7 +355,7 @@ html {
 .hover-lift:hover {
     transform: translateY(-2px);
     box-shadow:
-        0 12px 20px rgba(0, 0, 0, 0.15),
-        0 6px 8px rgba(0, 0, 0, 0.1),
-        inset 0 2px 0 rgba(255, 255, 255, 0.2);
+        0 12px 20px var(--shadow-dark),
+        0 6px 8px var(--shadow-medium),
+        inset 0 2px 0 hsla(0, 0%, 100%, 0.2);
 }
