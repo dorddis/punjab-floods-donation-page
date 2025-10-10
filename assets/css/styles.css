@@ -307,9 +307,10 @@ html {
         hsla(12, 67%, 34%, 0.85),
         hsla(16, 47%, 28%, 0.90));
     background-size: 400% 400%;
-    animation: gradientShift 18s ease infinite;
+    animation: gradientShift 18s ease-in-out infinite;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .glass-gradient-premium {
@@ -320,9 +321,10 @@ html {
         hsla(161, 88%, 20%, 0.80),
         hsla(161, 93%, 24%, 0.85));
     background-size: 400% 400%;
-    animation: gradientShift 20s ease infinite;
+    animation: gradientShift 20s ease-in-out infinite;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 /* Text shadows for better readability */
