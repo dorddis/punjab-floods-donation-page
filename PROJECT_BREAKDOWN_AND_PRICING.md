@@ -1,9 +1,9 @@
 # Punjab Floods Donation Page - Project Breakdown & Pricing Justification
 
-**Client:** Rahul (United Sikhs / Global Sikhs)
+**Client:** Rahul (United Sikhs)
 **Timeline:** 24 hours (Urgent delivery)
 **Deliverable:** High-conversion donation landing page
-**Status:** Production-ready, fully functional demo
+**Status:** [Production-ready, fully functional demo click to view](https://punjab-floods-donation-page.vercel.app/)
 
 ---
 
@@ -11,7 +11,7 @@
 
 This project encompasses the complete development of a conversion-optimized, mobile-first donation landing page, incorporating comprehensive research, strategic planning, design, development, and quality assurance processes. The implementation utilizes proven conversion psychology methodologies derived from successful campaigns such as TeamTrees and charity: water, while maintaining contextual authenticity appropriate for Punjab flood relief efforts.
 
-**Primary Achievement:** Successfully transformed the donation experience from a high-barrier entry point (₹87,500 minimum contribution) to an inclusive, multi-tier donation system commencing at ₹500. Industry benchmarks suggest potential conversion rate improvements from baseline levels of approximately 1% to target ranges of 4-6%, though actual performance will depend on various market factors.
+**Primary Achievement:** Successfully transformed the donation experience from a high-barrier entry point to an inclusive, multi-tier donation system starting at just $25. Industry benchmarks suggest potential conversion rate improvements from baseline levels of approximately 1% to target ranges of 4-6%, though actual performance will depend on various market factors.
 
 ---
 
@@ -21,7 +21,7 @@ This project encompasses the complete development of a conversion-optimized, mob
 
 **1. Punjab Floods Research & Verification**
    - Conducted research on the September 2025 Punjab floods (documented as the worst flooding event in 40 years)
-   - Verified impact statistics confirming 350,000 affected families
+   - Verified impact statistics confirming 384,000 affected people
    - Sourced and validated data from authentic news sources and official reports
 
 **2. Visual Asset Acquisition & Legal Documentation**
@@ -42,9 +42,9 @@ This project encompasses the complete development of a conversion-optimized, mob
 ### Activities Completed:
 
 **1. Conversion Strategy Development**
-   - Designed comprehensive donation ladder spanning from ₹500 to ₹3,50,000 across 8 distinct tiers
+   - Designed comprehensive donation ladder spanning from $25 to $4,200 across 6 distinct tiers
    - Developed emotional narrative architecture to guide user journey
-   - Applied psychological pricing principles (₹500, ₹2,500, ₹10,000 increments)
+   - Applied psychological pricing principles ($25, $100, $300, $1,000, $2,100, $4,200)
 
 **2. Design System Architecture**
    - Established custom color palette with cultural relevance (Saffron primary, Trust Blue secondary, Hope Green accents)
@@ -59,12 +59,12 @@ This project encompasses the complete development of a conversion-optimized, mob
 
 ### What Was Done:
 1. **Headlines & Hero Copy**
-   - "350,000 Families Still Without Homes"
+   - "384,000 People Still Without Homes"
    - Emotional sub-headlines and urgency banners
 
 2. **Donation Tier Descriptions**
-   - 8 donation tiers with compelling descriptions
-   - Tangible impact messaging ("₹500 = 50 bricks")
+   - 6 donation tiers with compelling descriptions
+   - Tangible impact messaging ("$25 = 50 bricks")
 
 3. **Emotional Storytelling**
    - Simran's story (8-year-old doing homework under tarp)
@@ -137,7 +137,7 @@ This project encompasses the complete development of a conversion-optimized, mob
    - Amount selection system
    - Custom amount toggle
    - Live amount calculator with 2x matching display
-   - Indian number formatting (₹2,500 format)
+   - US dollar formatting ($2,500 format)
    - Video modal controls (open/close/escape key)
    - Sticky footer scroll detection (50% trigger)
    - Social sharing functions:
@@ -380,7 +380,7 @@ This project encompasses the complete development of a conversion-optimized, mob
 
 ### Features Implemented:
 - ✅ Mobile-first responsive design (320px to 1920px+)
-- ✅ 8 donation tiers (₹500 to ₹3,50,000)
+- ✅ 6 donation tiers ($25 to $4,200)
 - ✅ Live donation calculator with 2x matching display
 - ✅ Video modal with full controls
 - ✅ Image carousel with auto-rotation and progress bar
@@ -559,4 +559,4 @@ This project represents **13.5 hours of strategic, creative, and technical work*
 
 **Prepared:** October 9, 2025
 **Project:** Punjab Floods Donation Landing Page
-**Client:** United Sikhs / Global Sikhs
+**Client:** United Sikhs
