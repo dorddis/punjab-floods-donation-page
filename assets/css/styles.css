@@ -34,6 +34,22 @@ html {
     animation: pulse-glow 2s infinite;
 }
 
+/* Badge glow animation for Popular badge */
+@keyframes badge-glow {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(255, 107, 53, 0.4),
+                    0 0 16px rgba(255, 107, 53, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 12px rgba(255, 107, 53, 0.6),
+                    0 0 24px rgba(255, 107, 53, 0.3);
+    }
+}
+
+.badge-glow {
+    animation: badge-glow 2.5s ease-in-out infinite;
+}
+
 /* Counter animation */
 @keyframes count-up {
     from { opacity: 0; transform: translateY(20px); }
