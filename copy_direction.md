@@ -539,3 +539,68 @@ Projected Results:
 
 
 
+
+
+
+# Client Suggestion
+
+## **Landing Page Draft:** 
+
+## **Page URL \- Rebuild Panjab Homes**
+
+## **Title \- Help Rebuild a Home in Flood-Hit Panjab**
+
+Entire villages across Ferozepur, Gurdaspur, Amritsar, and more were submerged during the devastating floods of 2025\. Thousands of families lost their homes, crops, and livelihoods. As the waters recede, the real work begins: rebuilding lives.
+
+This is your chance to be part of that recovery. Contribute to the rebuilding of a home in Panjab. Whether it’s a small portion or a full structure, every donation goes directly toward restoring safe shelter for families who have lost everything.
+
+### **Adopt a Home (Use thumbnails here to show categories)**
+
+Each contribution supports the construction of homes that were destroyed by the recent floods in Panjab. Choose the level that suits you:
+
+* **¼ Home**  
+  * $1,050 USD  
+  * Contributes toward bricks, labor, and partial roofing.  
+  * Thumbnail visual: Foundation/Wall under construction  
+* **½ Home**  
+  * $2,100 USD  
+  * Helps fund doors, windows, and major construction elements.  
+  * Thumbnail visual: Walls up, partial roof.  
+* **1 Full Home**  
+  * $4,200 USD  
+  * Fully funds one family home.  
+  * Thumbnail visual: Completed home, family in front.
+
+## **\[Donate Form Here\]**
+
+### **Donate Essential Materials (Use thumbnails here to show categories)**
+
+Want to contribute towards specific needs? Your support can directly fund:
+
+* **Bricks**  
+  * $250 USD covers brick material for multiple homes.  
+* **Cement Bags**  
+  * $300 USD covers enough cement for a half-house build.  
+* **Steel Bars**  
+  * $500 USD helps strengthen structural frames.
+
+*All material donations are pooled and used based on construction priority and material shortages.*
+
+### **UNITED SIKHS Impact So Far**
+
+Since July 2025:
+
+* 2,000+ flood victims rescued  
+* 8,000+ patients treated in medical relief camps  
+* 87+ villages reached with aid  
+* 1,000+ hot meals served daily  
+* 1,250+ quintals of cattle fodder delivered  
+* 450+ ration kits, 900L of clean water, and thousands of medical \+ hygiene supplies distributed
+
+---
+
+### **Why Your Help Matters**
+
+This is the largest flood-relief mobilization UNITED SIKHS has led in over a decade. Our commitment doesn’t end at rescue. We are rebuilding communities, one home at a time.
+
+Be part of this historic seva. Contribute today.

@@ -3,45 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rebuild Punjab - Help 384,000 People Come Home | United Sikhs</title>
-    <meta name="description" content="Help rebuild homes for 384,000 people affected by Punjab's worst floods in 40 years. Every $25 provides 50 bricks. Donations matched 2x until Sunday.">
-    <link rel="icon" type="image/png" href="assets/images/united-sikhs-logo.png">
-    <!-- External Libraries -->
+    <title>Rebuild Punjab - Help 384,000 People Come Home | Global Sikhs</title>
+    <meta name="description" content="Help rebuild homes for 384,000 people affected by Punjab's worst floods in 40 years. Every ₹500 provides 50 bricks. Donations matched 2x until Sunday.">
+    <link rel="icon" type="image/png" href="assets/images/global-sikhs-logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
-
-    <!-- Fonts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 
-    <!-- Tailwind Configuration -->
-    <script src="assets/js/tailwind.config.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        saffron: '#FF6B35',
+                        'saffron-dark': '#E85A28',
+                        'trust-blue': '#1E3A8A',
+                        'hope-green': '#10B981',
+                        'warm-sand': '#FAFAF9',
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hide scrollbar but keep functionality */
+        ::-webkit-scrollbar { display: none; }
+        html, body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Pulse animation for CTA */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
+        }
+
+        .pulse-cta {
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Counter animation */
+        @keyframes count-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .count-animate {
+            animation: count-up 0.6s ease-out;
+        }
+
+        /* Fade-in animation for scroll-triggered elements */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Staggered delay for sequential fade-ins */
+        .animate-on-scroll:nth-child(1) { animation-delay: 0s; }
+        .animate-on-scroll:nth-child(2) { animation-delay: 0.1s; }
+        .animate-on-scroll:nth-child(3) { animation-delay: 0.2s; }
+        .animate-on-scroll:nth-child(4) { animation-delay: 0.3s; }
+        .animate-on-scroll:nth-child(5) { animation-delay: 0.4s; }
+        .animate-on-scroll:nth-child(6) { animation-delay: 0.5s; }
+
+        /* FAQ Accordion Animation */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+            opacity: 0;
+        }
+
+        .faq-content.open {
+            opacity: 1;
+        }
+
+        .faq-content p {
+            padding-top: 0.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        /* Modal fade-in */
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-fade-in {
+            animation: modalFadeIn 0.2s ease-out;
+        }
+
+        /* Sticky CTA slide-up */
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 0.3s ease-out;
+        }
+
+
+        /* Loading spinner */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+        }
+
+        /* Image carousel with progress bar */
+        .image-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .carousel-image.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        .carousel-progress-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 10;
+        }
+
+        .carousel-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6B35, #E85A28);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Glassmorphic Animated Gradient Backgrounds */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Custom amount section animation */
+        .custom-amount-collapsed {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease-out, margin 0.3s ease-out;
+            margin-bottom: 0 !important;
+        }
+
+        .custom-amount-expanded {
+            max-height: 200px;
+            opacity: 1;
+            transition: max-height 0.4s ease-in, opacity 0.3s ease-in 0.1s, margin 0.3s ease-in;
+        }
+
+        .custom-amount-content {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease-out 0.1s;
+        }
+
+        .custom-amount-expanded .custom-amount-content {
+            transform: translateY(0);
+        }
+
+        /* True glassmorphism: semi-transparent gradients + backdrop blur */
+        .glass-gradient-amber {
+            background: linear-gradient(-45deg,
+                rgba(217, 119, 6, 0.75),
+                rgba(194, 65, 12, 0.80),
+                rgba(154, 52, 18, 0.85),
+                rgba(124, 45, 18, 0.90));
+            background-size: 400% 400%;
+            animation: gradientShift 18s ease infinite;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .glass-gradient-premium {
+            background: linear-gradient(-45deg,
+                rgba(109, 40, 217, 0.75),
+                rgba(91, 33, 182, 0.80),
+                rgba(76, 29, 149, 0.85),
+                rgba(6, 95, 70, 0.80),
+                rgba(4, 120, 87, 0.85));
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Text shadow for glassmorphic cards */
+        .glass-text-shadow {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Subtle text shadow for regular cards */
+        .subtle-text-shadow {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        }
+    </style>
 </head>
 
 <body class="bg-warm-sand">
 
     <!-- Urgency Banner - CRITICAL -->
     <div class="bg-gradient-to-r from-red-600 to-red-500 text-white py-2 px-4 text-center text-sm font-medium sticky top-0 z-50 shadow-lg">
-        <i class="fas fa-bolt"></i> ACTIVE NOW: Every $1 donated = $2 (Matched until Sunday midnight)
+        <i class="fas fa-bolt"></i> ACTIVE NOW: Every ₹1 donated = ₹2 (Matched until Sunday midnight)
     </div>
 
-    <!-- Header - White Background with Brand Blue Text -->
-    <header class="bg-white shadow-md">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
         <div class="max-w-6xl mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <img src="assets/images/united-sikhs-logo.png" alt="United Sikhs Logo" class="h-12 w-auto">
+                    <img src="assets/images/global-sikhs-logo.png" alt="Global Sikhs Logo" class="h-12 w-auto">
                     <div class="border-l-2 border-gray-300 pl-3">
-                        <span class="font-bold text-lg md:text-xl" style="color: #0c79be;">Rebuild Punjab</span>
-                        <div class="text-xs text-gray-600 font-medium">Flood Relief Initiative</div>
+                        <span class="font-bold text-lg md:text-xl text-gray-800">Rebuild Punjab</span>
+                        <div class="text-xs text-trust-blue font-medium">Flood Relief Initiative</div>
                     </div>
                 </div>
                 <button class="p-2 hover:bg-gray-100 rounded-lg transition">
-                    <i class="fa-solid fa-bars text-gray-700 text-xl"></i>
+                    <i class="fa-solid fa-bars text-gray-600 text-xl"></i>
                 </button>
             </div>
         </div>
@@ -65,7 +340,7 @@
                     384,000 People<br/>Still Without Homes
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-200 max-w-2xl leading-relaxed">
-                    Across Ferozepur, Gurdaspur, and Amritsar. One month after the worst flood in 40 years. Your donation today becomes a family's shelter tomorrow.
+                    One month after the worst flood in 40 years. Your donation today becomes a family's shelter tomorrow.
                 </p>
             </div>
 
@@ -88,7 +363,7 @@
             <!-- Primary CTA -->
             <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})"
                     class="pulse-cta bg-saffron hover:bg-saffron-dark text-white font-bold text-lg px-8 py-4 rounded-xl shadow-2xl transition-all transform hover:scale-105">
-                <i class="fas fa-heart"></i> Start Building Now - From $25
+                <i class="fas fa-heart"></i> Start Building Now - From ₹500
             </button>
 
             <p class="mt-4 text-sm text-gray-300">
@@ -96,8 +371,8 @@
             </p>
         </div>
 
-        <!-- Urgency Timer - Brand Blue -->
-        <div class="relative text-white py-3 px-4 text-center font-bold" style="background-color: #0c79be;">
+        <!-- Urgency Timer -->
+        <div class="relative bg-blue-600 text-white py-3 px-4 text-center font-bold">
             <i class="fas fa-snowflake"></i> Winter Begins in 52 Days - Families in Temporary Shelters Need Permanent Homes Now
         </div>
     </section>
@@ -119,11 +394,11 @@
                     <div class="inline-block p-4 bg-red-50 rounded-full mb-3">
                         <i class="fas fa-cube text-red-600 text-4xl"></i>
                     </div>
-                    <div class="text-3xl font-bold text-gray-900 mb-2">$25</div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">₹500</div>
                     <div class="text-lg font-semibold text-saffron mb-2">50 Bricks</div>
                     <p class="text-sm text-gray-600">Foundation for hope</p>
                 </div>
-                <button onclick="selectAmount(25)" class="w-full bg-saffron hover:bg-saffron-dark text-white font-bold py-3 rounded-xl transition">
+                <button onclick="selectAmount(500)" class="w-full bg-saffron hover:bg-saffron-dark text-white font-bold py-3 rounded-xl transition">
                     Donate 50 Bricks
                 </button>
             </div>
@@ -137,11 +412,11 @@
                     <div class="inline-block p-4 bg-gray-100 rounded-full mb-3">
                         <i class="fas fa-hammer text-gray-700 text-4xl"></i>
                     </div>
-                    <div class="text-3xl font-bold text-gray-900 mb-2">$100</div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">₹2,500</div>
                     <div class="text-lg font-semibold text-saffron mb-2">Foundation Materials</div>
                     <p class="text-sm text-gray-600">250 bricks + 5 bags cement + 15 days labor</p>
                 </div>
-                <button onclick="selectAmount(100)" class="w-full bg-saffron hover:bg-saffron-dark text-white font-bold py-3 rounded-xl transition">
+                <button onclick="selectAmount(2500)" class="w-full bg-saffron hover:bg-saffron-dark text-white font-bold py-3 rounded-xl transition">
                     Build Foundation
                 </button>
             </div>
@@ -152,11 +427,11 @@
                     <div class="inline-block p-4 bg-saffron/10 rounded-full mb-3">
                         <i class="fas fa-home text-saffron text-4xl"></i>
                     </div>
-                    <div class="text-3xl font-bold text-gray-900 mb-2">$4,200</div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">₹3,50,000</div>
                     <div class="text-lg font-semibold text-saffron mb-2">Complete Home</div>
                     <p class="text-sm text-gray-600">Change a family's life forever</p>
                 </div>
-                <button onclick="selectAmount(4200)" class="w-full bg-trust-blue hover:bg-blue-900 text-white font-bold py-3 rounded-xl transition">
+                <button onclick="selectAmount(350000)" class="w-full bg-trust-blue hover:bg-blue-900 text-white font-bold py-3 rounded-xl transition">
                     Build Complete Home
                 </button>
             </div>
@@ -185,8 +460,8 @@
             </div>
 
             <div class="flex justify-between text-sm">
-                <span>$2,800 raised</span>
-                <span>$4,200 goal</span>
+                <span>₹2,33,000 raised</span>
+                <span>₹3,50,000 goal</span>
             </div>
 
             <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})"
@@ -208,48 +483,48 @@
 
             <!-- Donation Amount Selection - All 6 Cards Together -->
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-                <!-- $25 -->
-                <button onclick="selectAmount(25)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 md:p-5 transition-all text-left">
-                    <div class="text-2xl md:text-3xl font-bold text-gray-900 subtle-text-shadow mb-1">$25</div>
-                    <div class="text-base font-medium text-gray-700 subtle-text-shadow">50 Bricks</div>
+                <!-- ₹500 -->
+                <button onclick="selectAmount(500)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 md:p-5 transition-all text-left">
+                    <div class="text-xl md:text-2xl font-bold text-gray-900 subtle-text-shadow mb-1">₹500</div>
+                    <div class="text-sm font-medium text-gray-700 subtle-text-shadow">50 Bricks</div>
                 </button>
 
-                <!-- $100 - MOST POPULAR -->
-                <button onclick="selectAmount(100)" class="donation-btn relative border-2 border-saffron bg-saffron/10 rounded-xl p-4 md:p-5 transition-all text-left hover:shadow-lg">
+                <!-- ₹2,500 - MOST POPULAR -->
+                <button onclick="selectAmount(2500)" class="donation-btn relative border-2 border-saffron bg-saffron/10 rounded-xl p-4 md:p-5 transition-all text-left hover:shadow-lg">
                     <div class="absolute -top-2 -right-2">
                         <span class="bg-saffron text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">⭐ POPULAR</span>
                     </div>
-                    <div class="text-2xl md:text-3xl font-bold text-saffron subtle-text-shadow mb-1">$100</div>
-                    <div class="text-base font-medium text-gray-700 subtle-text-shadow mb-1">Foundation Materials</div>
-                    <div class="text-sm text-gray-600 subtle-text-shadow hidden md:block">~200 bricks + 4 cement bags + 2 steel rods</div>
+                    <div class="text-xl md:text-2xl font-bold text-saffron subtle-text-shadow mb-1">₹2,500</div>
+                    <div class="text-sm font-medium text-gray-700 subtle-text-shadow mb-1">Foundation Materials</div>
+                    <div class="text-xs text-gray-600 subtle-text-shadow hidden md:block">~200 bricks + 4 cement bags + 2 steel rods</div>
                 </button>
 
-                <!-- $300 -->
-                <button onclick="selectAmount(300)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 md:p-5 transition-all text-left">
-                    <div class="text-2xl md:text-3xl font-bold text-gray-900 subtle-text-shadow mb-1">$300</div>
-                    <div class="text-base font-medium text-gray-700 subtle-text-shadow mb-1">Complete Room</div>
-                    <div class="text-sm text-gray-600 subtle-text-shadow hidden md:block">~800 bricks + 15 cement bags + full steel</div>
+                <!-- ₹10,000 -->
+                <button onclick="selectAmount(10000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 md:p-5 transition-all text-left">
+                    <div class="text-xl md:text-2xl font-bold text-gray-900 subtle-text-shadow mb-1">₹10,000</div>
+                    <div class="text-sm font-medium text-gray-700 subtle-text-shadow mb-1">Complete Room</div>
+                    <div class="text-xs text-gray-600 subtle-text-shadow hidden md:block">~800 bricks + 15 cement bags + full steel</div>
                 </button>
 
-                <!-- $1,000 -->
-                <button onclick="selectAmount(1000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 md:p-5 transition-all text-left">
-                    <div class="text-2xl md:text-3xl font-bold text-gray-900 subtle-text-shadow mb-1">$1,000</div>
-                    <div class="text-base font-medium text-gray-700 subtle-text-shadow mb-1">Multiple Rooms</div>
-                    <div class="text-sm text-gray-600 subtle-text-shadow hidden md:block">2-3 complete rooms with materials</div>
+                <!-- ₹50,000 -->
+                <button onclick="selectAmount(50000)" class="donation-btn border-2 border-gray-200 hover:border-saffron bg-white hover:bg-saffron/5 rounded-xl p-4 md:p-5 transition-all text-left">
+                    <div class="text-xl md:text-2xl font-bold text-gray-900 subtle-text-shadow mb-1">₹50,000</div>
+                    <div class="text-sm font-medium text-gray-700 subtle-text-shadow mb-1">Multiple Rooms</div>
+                    <div class="text-xs text-gray-600 subtle-text-shadow hidden md:block">2-3 complete rooms with materials</div>
                 </button>
 
-                <!-- $2,100 -->
-                <button onclick="selectAmount(2100)" class="donation-btn relative glass-gradient-amber border-2 border-orange-500/40 hover:border-orange-600/60 rounded-xl p-4 md:p-5 transition-all text-left hover:shadow-xl">
-                    <div class="text-2xl md:text-3xl font-bold text-white glass-text-shadow mb-1">$2,100</div>
-                    <div class="text-base font-medium text-white/95 glass-text-shadow mb-1">Half Home Package</div>
-                    <div class="text-sm text-white/90 glass-text-shadow hidden md:block">Foundation + 2 rooms + roofing</div>
+                <!-- ₹1,75,000 -->
+                <button onclick="selectAmount(175000)" class="donation-btn relative glass-gradient-amber border-2 border-orange-500/40 hover:border-orange-600/60 rounded-xl p-4 md:p-5 transition-all text-left hover:shadow-xl">
+                    <div class="text-xl md:text-2xl font-bold text-white glass-text-shadow mb-1">₹1,75,000</div>
+                    <div class="text-sm font-medium text-white/95 glass-text-shadow mb-1">Half Home Package</div>
+                    <div class="text-xs text-white/90 glass-text-shadow hidden md:block">Foundation + 2 rooms + roofing</div>
                 </button>
 
-                <!-- $4,200 -->
-                <button onclick="selectAmount(4200)" class="donation-btn relative glass-gradient-premium border-2 border-purple-500/40 hover:border-purple-600/60 rounded-xl p-4 md:p-5 transition-all text-left hover:shadow-xl">
-                    <div class="text-2xl md:text-3xl font-bold text-white glass-text-shadow mb-1">$4,200</div>
-                    <div class="text-base font-medium text-white/95 glass-text-shadow mb-1">Complete Home</div>
-                    <div class="text-sm text-white/90 glass-text-shadow hidden md:block">Rooms + kitchen + bathroom</div>
+                <!-- ₹3,50,000 -->
+                <button onclick="selectAmount(350000)" class="donation-btn relative glass-gradient-premium border-2 border-purple-500/40 hover:border-purple-600/60 rounded-xl p-4 md:p-5 transition-all text-left hover:shadow-xl">
+                    <div class="text-xl md:text-2xl font-bold text-white glass-text-shadow mb-1">₹3,50,000</div>
+                    <div class="text-sm font-medium text-white/95 glass-text-shadow mb-1">Complete Home</div>
+                    <div class="text-xs text-white/90 glass-text-shadow hidden md:block">Rooms + kitchen + bathroom</div>
                 </button>
             </div>
 
@@ -271,10 +546,10 @@
                 <div class="custom-amount-content">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Enter Custom Amount</label>
                     <div class="relative">
-                        <span class="absolute left-4 top-4 text-gray-500 text-xl">$</span>
+                        <span class="absolute left-4 top-4 text-gray-500 text-xl">₹</span>
                         <input type="number" id="custom-amount"
                                class="w-full pl-10 pr-4 py-4 text-2xl font-bold border-2 border-gray-300 rounded-xl focus:border-saffron focus:outline-none"
-                               placeholder="100">
+                               placeholder="5000" min="500">
                     </div>
                 </div>
             </div>
@@ -284,11 +559,11 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <div class="text-sm text-gray-600 mb-1">Your donation amount</div>
-                        <div id="selected-amount" class="text-3xl font-bold text-gray-900">$100</div>
+                        <div id="selected-amount" class="text-3xl font-bold text-gray-900">₹2,500</div>
                     </div>
                     <div class="text-right">
                         <div class="text-sm text-gray-600 mb-1">With matching</div>
-                        <div id="matched-amount" class="text-3xl font-bold text-hope-green">$200</div>
+                        <div id="matched-amount" class="text-3xl font-bold text-hope-green">₹5,000</div>
                     </div>
                 </div>
                 <div class="mt-4 flex items-center space-x-2">
@@ -311,20 +586,20 @@
                 <label class="block text-sm font-medium text-gray-700 mb-3">Choose payment method</label>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                     <button class="border-2 border-gray-300 hover:border-saffron rounded-xl p-4 flex flex-col items-center justify-center transition-all">
-                        <i class="fab fa-cc-paypal text-4xl mb-2 text-blue-600"></i>
-                        <span class="text-sm font-medium">PayPal</span>
+                        <i class="fab fa-google-pay text-4xl mb-2" style="color: #5f6368;"></i>
+                        <span class="text-sm font-medium">Google Pay</span>
                     </button>
                     <button class="border-2 border-gray-300 hover:border-saffron rounded-xl p-4 flex flex-col items-center justify-center transition-all">
-                        <i class="fab fa-cc-stripe text-4xl mb-2 text-purple-600"></i>
-                        <span class="text-sm font-medium">Stripe</span>
-                    </button>
-                    <button class="border-2 border-gray-300 hover:border-saffron rounded-xl p-4 flex flex-col items-center justify-center transition-all">
-                        <i class="fas fa-credit-card text-4xl mb-2 text-gray-600"></i>
-                        <span class="text-sm font-medium">Credit Card</span>
+                        <i class="fas fa-mobile-alt text-4xl mb-2 text-purple-600"></i>
+                        <span class="text-sm font-medium">PhonePe</span>
                     </button>
                     <button class="border-2 border-gray-300 hover:border-saffron rounded-xl p-4 flex flex-col items-center justify-center transition-all">
                         <i class="fas fa-university text-4xl mb-2 text-trust-blue"></i>
-                        <span class="text-sm font-medium">Bank Transfer</span>
+                        <span class="text-sm font-medium">Paytm</span>
+                    </button>
+                    <button class="border-2 border-gray-300 hover:border-saffron rounded-xl p-4 flex flex-col items-center justify-center transition-all">
+                        <i class="fas fa-credit-card text-4xl mb-2 text-gray-600"></i>
+                        <span class="text-sm font-medium">Card</span>
                     </button>
                 </div>
             </div>
@@ -347,124 +622,6 @@
         </div>
     </section>
 
-    <!-- UNITED SIKHS Impact So Far - Brand Blue Section -->
-    <section style="background: linear-gradient(135deg, #0c79be 0%, #1E3A8A 100%);" class="text-white py-12 md:py-16">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-10">
-                <h2 class="font-display text-3xl md:text-4xl font-bold mb-3">
-                    UNITED SIKHS Impact So Far
-                </h2>
-                <p class="text-lg text-white/90">Since July 2025</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                <!-- Flood Victims Rescued -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20 hover:bg-white/15 transition-all">
-                    <div class="flex items-center justify-center mb-3">
-                        <div class="bg-hope-green/20 p-3 rounded-full">
-                            <i class="fas fa-hand-holding-heart text-hope-green text-2xl md:text-3xl"></i>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold mb-1" data-countup data-target="2000" data-suffix="+">2,000+</div>
-                        <p class="text-sm md:text-base text-white/90">Flood victims rescued</p>
-                    </div>
-                </div>
-
-                <!-- Patients Treated -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20 hover:bg-white/15 transition-all">
-                    <div class="flex items-center justify-center mb-3">
-                        <div class="bg-red-400/20 p-3 rounded-full">
-                            <i class="fas fa-heartbeat text-red-300 text-2xl md:text-3xl"></i>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold mb-1" data-countup data-target="8000" data-suffix="+">8,000+</div>
-                        <p class="text-sm md:text-base text-white/90">Patients treated in camps</p>
-                    </div>
-                </div>
-
-                <!-- Villages Reached -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20 hover:bg-white/15 transition-all">
-                    <div class="flex items-center justify-center mb-3">
-                        <div class="bg-saffron/20 p-3 rounded-full">
-                            <i class="fas fa-map-marked-alt text-saffron text-2xl md:text-3xl"></i>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold mb-1" data-countup data-target="87" data-suffix="+">87+</div>
-                        <p class="text-sm md:text-base text-white/90">Villages reached with aid</p>
-                    </div>
-                </div>
-
-                <!-- Hot Meals -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20 hover:bg-white/15 transition-all">
-                    <div class="flex items-center justify-center mb-3">
-                        <div class="bg-orange-400/20 p-3 rounded-full">
-                            <i class="fas fa-utensils text-orange-300 text-2xl md:text-3xl"></i>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold mb-1" data-countup data-target="1000" data-suffix="+">1,000+</div>
-                        <p class="text-sm md:text-base text-white/90">Hot meals served daily</p>
-                    </div>
-                </div>
-
-                <!-- Cattle Fodder -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20 hover:bg-white/15 transition-all">
-                    <div class="flex items-center justify-center mb-3">
-                        <div class="bg-green-400/20 p-3 rounded-full">
-                            <i class="fas fa-leaf text-green-300 text-2xl md:text-3xl"></i>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold mb-1" data-countup data-target="1250" data-suffix="+">1,250+</div>
-                        <p class="text-sm md:text-base text-white/90">Quintals of cattle fodder</p>
-                    </div>
-                </div>
-
-                <!-- Clean Water -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20 hover:bg-white/15 transition-all">
-                    <div class="flex items-center justify-center mb-3">
-                        <div class="bg-blue-400/20 p-3 rounded-full">
-                            <i class="fas fa-tint text-blue-300 text-2xl md:text-3xl"></i>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold mb-1">900L+</div>
-                        <p class="text-sm md:text-base text-white/90">Clean drinking water delivered</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Relief Kits - Below Grid, 1.5x Card Width -->
-            <div class="flex justify-center mt-4 md:mt-6">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20 hover:bg-white/15 transition-all" style="width: calc(75% - 0.5rem);">
-                    <div class="flex items-center justify-center mb-3">
-                        <div class="bg-purple-400/20 p-3 rounded-full">
-                            <i class="fas fa-box-open text-purple-300 text-2xl md:text-3xl"></i>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold mb-1">450+</div>
-                        <p class="text-sm md:text-base text-white/90">Families received relief kits</p>
-                        <p class="text-xs text-white/70 mt-1">Food, water & essentials</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-8 md:mt-10">
-                <p class="text-base md:text-lg text-white/90 mb-5 md:mb-6 max-w-3xl mx-auto px-4">
-                    From rescue to recovery to rebuilding. Our relief operations span the entire journey. Help us complete the mission by providing permanent homes.
-                </p>
-                <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})"
-                        class="bg-saffron hover:bg-saffron-dark text-white font-bold text-lg px-8 py-4 rounded-xl shadow-2xl transition-all transform hover:scale-105">
-                    <i class="fas fa-heart"></i> Support Our Relief Efforts
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Recent Donors - SOCIAL PROOF (TeamTrees style) -->
     <section class="bg-warm-sand py-12">
         <div class="max-w-6xl mx-auto px-4">
@@ -480,8 +637,8 @@
                             <i class="fas fa-user text-saffron"></i>
                         </div>
                         <div>
-                            <div class="font-semibold text-gray-900">Sarah from New York</div>
-                            <div class="text-sm text-gray-600">donated $150</div>
+                            <div class="font-semibold text-gray-900">Raj from Delhi</div>
+                            <div class="text-sm text-gray-600">donated ₹5,000</div>
                         </div>
                     </div>
                     <div class="text-right">
@@ -496,8 +653,8 @@
                             <i class="fas fa-user text-hope-green"></i>
                         </div>
                         <div>
-                            <div class="font-semibold text-gray-900">James from London</div>
-                            <div class="text-sm text-gray-600">donated $25 • "Every brick matters"</div>
+                            <div class="font-semibold text-gray-900">Priya from Chandigarh</div>
+                            <div class="text-sm text-gray-600">donated ₹500 • "Every brick matters"</div>
                         </div>
                     </div>
                     <div class="text-right">
@@ -513,7 +670,7 @@
                         </div>
                         <div>
                             <div class="font-semibold text-gray-900">Anonymous</div>
-                            <div class="text-sm text-gray-600">donated $750</div>
+                            <div class="text-sm text-gray-600">donated ₹25,000</div>
                         </div>
                     </div>
                     <div class="text-right">
@@ -528,8 +685,8 @@
                             <i class="fas fa-building text-saffron"></i>
                         </div>
                         <div>
-                            <div class="font-semibold text-gray-900">Tech Company USA</div>
-                            <div class="text-sm text-gray-600">donated $3,000</div>
+                            <div class="font-semibold text-gray-900">Corporate Group from Mumbai</div>
+                            <div class="text-sm text-gray-600">donated ₹1,00,000</div>
                         </div>
                     </div>
                     <div class="text-right">
@@ -540,7 +697,7 @@
 
             <div class="text-center mt-8">
                 <div class="inline-block bg-white rounded-full px-6 py-3 shadow-md">
-                    <span class="text-gray-700">$9,750 raised today from </span>
+                    <span class="text-gray-700">₹3,24,500 raised today from </span>
                     <span class="font-bold text-saffron">127 donors</span>
                 </div>
             </div>
@@ -580,7 +737,7 @@
                         Why We Can't Stop Building
                     </h3>
                     <p class="text-gray-700 leading-relaxed mb-6">
-                        In September 2025, the worst floods in 40 years devastated Punjab. 384,000 people lost everything. When we met 8-year-old Simran, she was doing homework under a tarp in a relief camp. Her family's home was swept away. Today, thanks to donors like you, she studies at a proper desk in a permanent home. Your donation gives families back their dignity, children their education, and communities their future.
+                        In September 2025, the worst floods in 40 years devastated Punjab. 384,000 people lost everything. When we met 8-year-old Simran, she was doing homework under a tarp in a relief camp. Her family's home was swept away. Today, thanks to donors like you, she studies at a real desk, in a real home, with a real future ahead. This is why we build - not just homes, but hope. Your donation doesn't just provide shelter; it restores dignity, enables education, and rebuilds communities.
                     </p>
                     <button onclick="openVideoModal()" class="text-saffron font-semibold flex items-center space-x-2 hover:space-x-3 transition-all cursor-pointer">
                         <span>Watch The Crisis Unfold (1 min)</span>
@@ -604,8 +761,8 @@
         </div>
     </div>
 
-    <!-- Trust & Transparency - Brand Blue -->
-    <section style="background-color: #0c79be;" class="text-white py-12">
+    <!-- Trust & Transparency -->
+    <section class="bg-trust-blue text-white py-12">
         <div class="max-w-4xl mx-auto px-4">
             <h3 class="font-display text-3xl font-bold mb-8 text-center">
                 Where Your Money Goes
@@ -628,7 +785,7 @@
 
             <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
                 <div class="text-xl font-bold mb-2">100% Transparency Promise</div>
-                <p class="text-white/90 mb-4">Track your donation with a unique ID, get weekly photo updates, and visit construction sites anytime.</p>
+                <p class="text-white/90 mb-4">Track your donation with unique ID. Weekly photo updates. Visit construction sites anytime.</p>
                 <button class="text-white font-semibold underline hover:no-underline">
                     Download Detailed Financial Report
                 </button>
@@ -731,7 +888,7 @@
     </section>
 
     <!-- Share Campaign Section -->
-    <section id="share-campaign" class="bg-gradient-to-br from-blue-50 to-purple-50 py-12">
+    <section class="bg-gradient-to-br from-blue-50 to-purple-50 py-12">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h3 class="font-display text-3xl font-bold text-gray-900 mb-4">
                 Multiply Your Impact - Share This Campaign
@@ -781,7 +938,7 @@
             <div class="bg-white rounded-xl p-6 max-w-2xl mx-auto shadow-lg">
                 <p class="text-sm text-gray-600 mb-2">Share this message:</p>
                 <p class="text-gray-800 italic">
-                    "384,000 people in Punjab still don't have homes after devastating floods. Help rebuild lives - every $25 provides 50 bricks. Donations matched 2x until Sunday! 🏠"
+                    "384,000 people in Punjab still don't have homes after devastating floods. Help rebuild lives - every ₹500 provides 50 bricks. Donations matched 2x until Sunday! 🏠"
                 </p>
             </div>
         </div>
@@ -819,11 +976,11 @@
             <!-- FAQ 3 -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden">
                 <button onclick="toggleFAQ(3)" class="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
-                    <h4 class="font-bold text-gray-900 pr-4">What if I can't afford $25?</h4>
+                    <h4 class="font-bold text-gray-900 pr-4">What if I can't afford ₹500?</h4>
                     <i id="faq-icon-3" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
                 </button>
                 <div id="faq-content-3" class="faq-content px-6">
-                    <p class="text-gray-700">Every contribution matters! Even $25 provides 50 bricks toward building a home, and you can donate any amount that feels right for you. <a href="#donation-form" class="text-saffron font-semibold hover:underline">Click here to donate</a>.</p>
+                    <p class="text-gray-700">Every contribution matters! Even ₹500 provides 50 bricks toward building a home, and you can donate any amount that feels right for you. <a href="#donation-form" class="text-saffron font-semibold hover:underline">Click here to donate</a>.</p>
                 </div>
             </div>
 
@@ -834,7 +991,7 @@
                     <i id="faq-icon-4" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
                 </button>
                 <div id="faq-content-4" class="faq-content px-6">
-                    <p class="text-gray-700">Yes! All donations are eligible for 80G tax deduction under Indian Income Tax Act. United Sikhs is registered under Section 80G (Registration details provided on your receipt). You'll receive an instant digital certificate via email that you can use while filing your returns, saving you up to 30% on taxes.</p>
+                    <p class="text-gray-700">Yes! All donations are eligible for 80G tax deduction under Indian Income Tax Act. Global Sikhs is registered under Section 80G (Registration details provided on your receipt). You'll receive an instant digital certificate via email that you can use while filing your returns, saving you up to 30% on taxes.</p>
                 </div>
             </div>
 
@@ -867,7 +1024,7 @@
                     <i id="faq-icon-7" class="fas fa-chevron-down text-saffron transition-transform duration-300"></i>
                 </button>
                 <div id="faq-content-7" class="faq-content px-6">
-                    <p class="text-gray-700">Yes! We accept donations of construction materials like cement, bricks, steel, and roofing materials. Please contact us at <a href="mailto:contact@unitedsikhs.org" class="text-saffron font-semibold hover:underline">contact@unitedsikhs.org</a> or call us at <a href="tel:+18558786333" class="text-saffron font-semibold hover:underline">+1-855-878-6333</a> to coordinate material donations.</p>
+                    <p class="text-gray-700">Yes! We accept donations of construction materials like cement, bricks, steel, and roofing materials. Please contact us at <a href="mailto:donate@theglobalsikhs.org" class="text-saffron font-semibold hover:underline">donate@theglobalsikhs.org</a> or WhatsApp us at <a href="https://api.whatsapp.com/send/?phone=919145392453&text&type=phone_number&app_absent=0" target="_blank" class="text-saffron font-semibold hover:underline">+91-91453-92453</a> to coordinate material donations.</p>
                 </div>
             </div>
 
@@ -888,7 +1045,7 @@
     <section class="bg-gradient-to-r from-saffron to-orange-500 text-white py-16">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">
-                Be Part of This Historic Seva
+                Be Part of Something Bigger
             </h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
@@ -912,39 +1069,36 @@
             </button>
 
             <div class="mt-8 text-sm text-white/80 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
-                <a href="#donation-form" class="hover:underline hover:text-white transition">Donate Materials</a>
-                <a href="https://unitedsikhs.org/join-us/" target="_blank" class="hover:underline hover:text-white transition">Volunteer</a>
-                <a href="https://unitedsikhs.org/community-partners/" target="_blank" class="hover:underline hover:text-white transition">Corporate Partnership</a>
-                <a href="#share-campaign" class="hover:underline hover:text-white transition">Share Campaign</a>
+                <a href="#" class="hover:underline hover:text-white transition">Donate Materials</a>
+                <a href="#" class="hover:underline hover:text-white transition">Volunteer</a>
+                <a href="#" class="hover:underline hover:text-white transition">Corporate Partnership</a>
+                <a href="#" class="hover:underline hover:text-white transition">Share Campaign</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer - Brand Blue Gradient to Navy -->
-    <footer style="background: linear-gradient(to right, #0c79be, #1E3A8A, #1a1a1a);" class="text-gray-300 py-8 pb-24 md:pb-8">
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 pb-24 md:pb-8">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex flex-col items-center mb-6">
                 <!-- Logo with white background for better contrast -->
                 <div class="bg-white rounded-full p-2 mb-3">
-                    <img src="assets/images/united-sikhs-logo-wide.png" alt="United Sikhs" class="h-12 w-auto">
+                    <img src="assets/images/global-sikhs-logo.png" alt="Global Sikhs" class="h-12 w-auto">
                 </div>
-                <p class="text-center text-gray-300">&copy; 2025 Rebuild Punjab - United Sikhs. All rights reserved.</p>
+                <p class="text-center text-gray-300">&copy; 2025 Rebuild Punjab - Global Sikhs. All rights reserved.</p>
             </div>
             <div class="flex justify-center items-center gap-6">
-                <a href="https://www.facebook.com/UNITEDSIKHS.org/" target="_blank" rel="nofollow" class="text-gray-300 hover:text-white transition-colors" aria-label="Facebook">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.theglobalsikhs.org/rebuildpunjab" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Share on Facebook">
                     <i class="fab fa-facebook text-2xl"></i>
                 </a>
-                <a href="https://twitter.com/unitedsikhs?lang=en" target="_blank" rel="nofollow" class="text-gray-300 hover:text-white transition-colors" aria-label="Twitter">
-                    <i class="fab fa-x-twitter text-2xl"></i>
+                <a href="https://twitter.com/intent/tweet?url=https://www.theglobalsikhs.org/rebuildpunjab&text=Help%20rebuild%20Punjab%20-%20384,000%20people%20need%20homes%20after%20devastating%20floods" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Share on Twitter/X">
+                    <i class="fab fa-twitter text-2xl"></i>
                 </a>
-                <a href="https://www.youtube.com/user/UnitedSikhsTV" target="_blank" rel="nofollow" class="text-gray-300 hover:text-white transition-colors" aria-label="Youtube">
-                    <i class="fab fa-youtube text-2xl"></i>
-                </a>
-                <a href="https://in.linkedin.com/company/united-sikhs" target="_blank" rel="nofollow" class="text-gray-300 hover:text-white transition-colors" aria-label="Linkedin">
-                    <i class="fab fa-linkedin text-2xl"></i>
-                </a>
-                <a href="https://www.instagram.com/unitedsikhs/?hl=en" target="_blank" rel="nofollow" class="text-gray-300 hover:text-white transition-colors" aria-label="Instagram">
+                <a href="https://www.instagram.com/theglobalsikhs" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Follow on Instagram">
                     <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="https://wa.me/?text=Help%20rebuild%20Punjab%20after%20devastating%20floods.%20Donations%20matched%202x!%20https://www.theglobalsikhs.org/rebuildpunjab" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Share on WhatsApp">
+                    <i class="fab fa-whatsapp text-2xl"></i>
                 </a>
             </div>
         </div>
@@ -955,7 +1109,7 @@
         <div class="flex items-center justify-between max-w-6xl mx-auto">
             <div>
                 <div class="text-sm text-gray-600">Help Build Home #348</div>
-                <div class="text-lg font-bold text-gray-900">From $25</div>
+                <div class="text-lg font-bold text-gray-900">From ₹500</div>
             </div>
             <button onclick="document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'})"
                     class="bg-saffron text-white font-bold px-6 py-3 rounded-xl">
@@ -990,7 +1144,7 @@
                 </p>
 
                 <p class="text-sm text-gray-600 mb-6 leading-relaxed">
-                    Winter begins in <strong class="text-red-600">52 days</strong>. Your <strong class="text-saffron">$25</strong> donation provides <strong>50 bricks</strong> toward a permanent home.
+                    Winter begins in <strong class="text-red-600">52 days</strong>. Your <strong class="text-saffron">₹500</strong> donation (just ₹17/day) provides <strong>50 bricks</strong> toward a permanent home.
                 </p>
 
                 <!-- Matching offer badge - more prominent -->
@@ -1004,12 +1158,12 @@
                         <i class="fas fa-gift"></i> Your Donation Doubled!
                     </p>
                     <p class="text-xs text-gray-700">
-                        Every $1 = $2 until Sunday midnight
+                        Every ₹1 = ₹2 until Sunday midnight
                     </p>
                     <div class="flex items-center justify-center gap-3 mt-3">
-                        <span class="text-xl font-bold text-gray-900">$25</span>
+                        <span class="text-xl font-bold text-gray-900">₹500</span>
                         <i class="fas fa-arrow-right text-hope-green text-sm"></i>
-                        <span class="text-2xl font-bold text-hope-green">$50</span>
+                        <span class="text-2xl font-bold text-hope-green">₹1,000</span>
                         <span class="text-xs text-gray-600">impact</span>
                     </div>
                 </div>
@@ -1028,7 +1182,523 @@
     </div>
 
     <!-- JavaScript -->
-    <script src="assets/js/main.js"></script>
+    <script>
+        let selectedAmountValue = 2500;
+
+        function selectAmount(amount) {
+            selectedAmountValue = amount;
+            updateAmountDisplay();
+
+            // Hide custom input if preset selected
+            const section = document.getElementById('custom-amount-section');
+            section.classList.remove('custom-amount-expanded');
+            section.classList.add('custom-amount-collapsed');
+
+            // Visual feedback with border and background
+            document.querySelectorAll('.donation-btn').forEach(btn => {
+                btn.classList.remove('border-saffron', 'bg-saffron/10');
+
+                // Restore original border colors based on card type (with semi-transparent borders for glassmorphic cards)
+                if (btn.classList.contains('glass-gradient-amber')) {
+                    btn.classList.add('border-orange-500/40');
+                } else if (btn.classList.contains('glass-gradient-premium')) {
+                    btn.classList.add('border-purple-500/40');
+                } else if (btn.textContent.includes('POPULAR')) {
+                    // Keep POPULAR card border as is
+                } else {
+                    btn.classList.add('border-gray-200');
+                }
+            });
+
+            const selectedBtn = event.target.closest('.donation-btn');
+
+            // Remove original border color before adding saffron
+            selectedBtn.classList.remove('border-gray-200', 'border-orange-500/40', 'border-purple-500/40');
+            selectedBtn.classList.add('border-saffron');
+
+            // Only add background color to non-gradient cards (preserve glassmorphic effect)
+            if (!selectedBtn.classList.contains('glass-gradient-amber') &&
+                !selectedBtn.classList.contains('glass-gradient-premium')) {
+                selectedBtn.classList.add('bg-saffron/10');
+            }
+
+            // Smooth scroll to form
+            document.getElementById('donation-form').scrollIntoView({behavior: 'smooth', block: 'center'});
+        }
+
+        function toggleCustomAmount() {
+            const section = document.getElementById('custom-amount-section');
+            const isCollapsed = section.classList.contains('custom-amount-collapsed');
+
+            if (isCollapsed) {
+                // Expand
+                section.classList.remove('custom-amount-collapsed');
+                section.classList.add('custom-amount-expanded');
+                // Focus input after animation starts
+                setTimeout(() => {
+                    document.getElementById('custom-amount').focus();
+                }, 150);
+            } else {
+                // Collapse
+                section.classList.remove('custom-amount-expanded');
+                section.classList.add('custom-amount-collapsed');
+            }
+        }
+
+        function updateAmountDisplay() {
+            document.getElementById('selected-amount').textContent = `₹${selectedAmountValue.toLocaleString('en-IN')}`;
+            document.getElementById('matched-amount').textContent = `₹${(selectedAmountValue * 2).toLocaleString('en-IN')}`;
+        }
+
+        // Update amount when custom input changes
+        document.getElementById('custom-amount')?.addEventListener('input', (e) => {
+            const value = parseInt(e.target.value) || 0;
+            if (value > 0) {
+                selectedAmountValue = value;
+                updateAmountDisplay();
+            }
+        });
+
+        function completeDonation() {
+            const btn = event.target;
+            const originalHTML = btn.innerHTML;
+
+            // Show loading state
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> <span class="ml-2">Processing...</span>';
+
+            // Simulate processing
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+
+                // Show success alert
+                alert(`Thank you for your donation of ₹${selectedAmountValue.toLocaleString('en-IN')}!\n\nYou will receive:\n✓ Email receipt with 80G certificate\n✓ WhatsApp message with donation ID\n✓ Weekly construction updates\n\nWith matching, your impact is ₹${(selectedAmountValue * 2).toLocaleString('en-IN')}!`);
+            }, 1500);
+        }
+
+        // Show sticky footer after scrolling 50% (with slide-up animation)
+        let stickyFooterShown = false;
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            const stickyFooter = document.getElementById('sticky-footer');
+
+            if (scrollPercent > 50 && window.innerWidth < 768) {
+                if (!stickyFooterShown) {
+                    stickyFooter.classList.remove('hidden');
+                    stickyFooter.classList.add('slide-up');
+                    stickyFooterShown = true;
+                }
+            } else {
+                if (stickyFooterShown) {
+                    stickyFooter.classList.add('hidden');
+                    stickyFooter.classList.remove('slide-up');
+                    stickyFooterShown = false;
+                }
+            }
+        });
+
+        // Initialize
+        updateAmountDisplay();
+
+        // ===== ANIMATION ENHANCEMENTS =====
+
+        // 1. Number Count-Up Animation
+        function animateNumber(element, target, duration = 2000, suffix = '') {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString('en-IN') + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString('en-IN') + suffix;
+                }
+            }, 16);
+        }
+
+        // Observe and animate numbers when they enter viewport
+        const numberObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    const target = parseInt(entry.target.dataset.target);
+                    const suffix = entry.target.dataset.suffix || '';
+                    animateNumber(entry.target, target, 2000, suffix);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Apply to stat numbers
+        document.querySelectorAll('[data-countup]').forEach(el => {
+            numberObserver.observe(el);
+        });
+
+        // 2. Scroll-Triggered Fade-In Animations
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Apply to elements that should fade in
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            fadeObserver.observe(el);
+        });
+
+        // 3. Hero Parallax Effect
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const hero = document.querySelector('.hero-background');
+                    if (hero) {
+                        const scrolled = window.pageYOffset;
+                        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Video Modal Functions (with fade-in)
+        function openVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('flood-video');
+            modal.classList.remove('hidden');
+            modal.classList.add('modal-fade-in');
+            // Small delay to ensure modal is visible before playing
+            setTimeout(() => {
+                video.play().catch(err => {
+                    console.log('Video autoplay prevented:', err);
+                    // This is normal - browser blocks autoplay, user will click play button
+                });
+            }, 100);
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('flood-video');
+            video.pause();
+            video.currentTime = 0; // Reset to beginning
+            modal.classList.add('hidden');
+            modal.classList.remove('modal-fade-in');
+        }
+
+        // Close video modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('video-modal');
+                if (!modal.classList.contains('hidden')) {
+                    closeVideoModal();
+                }
+            }
+        });
+
+        // Social Media Sharing Functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Help rebuild Punjab - 384,000 people need homes after devastating floods. Donations matched 2x! 🏠');
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function copyPageLink() {
+            const url = window.location.href;
+
+            // Try to use the modern clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showCopySuccess();
+                }).catch(() => {
+                    // Fallback for older browsers
+                    fallbackCopyToClipboard(url);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyToClipboard(url);
+            }
+        }
+
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                showCopySuccess();
+            } catch (err) {
+                alert('Failed to copy link. Please copy manually: ' + text);
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        function showCopySuccess() {
+            const btn = document.getElementById('copy-link-text');
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.parentElement.classList.add('border-green-600', 'bg-green-50');
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.parentElement.classList.remove('border-green-600', 'bg-green-50');
+            }, 2000);
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFAQ(faqNumber) {
+            const content = document.getElementById(`faq-content-${faqNumber}`);
+            const icon = document.getElementById(`faq-icon-${faqNumber}`);
+
+            // Toggle the clicked FAQ with smooth animation
+            if (content.classList.contains('open')) {
+                // Closing: set max-height to current scrollHeight, then animate to 0
+                const currentHeight = content.scrollHeight;
+                content.style.maxHeight = currentHeight + 'px';
+
+                // Force reflow to ensure the height is set before transitioning
+                content.offsetHeight;
+
+                content.style.maxHeight = '0';
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Opening: set max-height to scrollHeight (includes all padding)
+                content.classList.add('open');
+                const fullHeight = content.scrollHeight;
+                content.style.maxHeight = fullHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // ===== IMAGE CAROUSEL WITH PROGRESS BAR =====
+        let currentSlide = 0;
+        let carouselInterval;
+        let progressInterval;
+        let progress = 0;
+        const slideDuration = 4000; // 4 seconds per slide
+        const progressUpdateInterval = 20; // Update progress every 20ms for smooth animation
+
+        function initCarousel() {
+            const carousel = document.getElementById('story-carousel');
+            const images = carousel.querySelectorAll('.carousel-image');
+            const totalSlides = images.length;
+
+            // Start the carousel
+            startCarousel();
+
+            // Pause on hover
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(carouselInterval);
+                clearInterval(progressInterval);
+            });
+
+            // Resume on mouse leave
+            carousel.addEventListener('mouseleave', () => {
+                startCarousel();
+            });
+        }
+
+        function startCarousel() {
+            // Reset and start progress bar
+            progress = 0;
+            updateProgressBar();
+
+            // Clear any existing intervals
+            clearInterval(carouselInterval);
+            clearInterval(progressInterval);
+
+            // Update progress bar smoothly
+            progressInterval = setInterval(() => {
+                progress += (progressUpdateInterval / slideDuration) * 100;
+                if (progress >= 100) {
+                    progress = 100;
+                }
+                updateProgressBar();
+            }, progressUpdateInterval);
+
+            // Change slide after duration
+            carouselInterval = setInterval(() => {
+                nextSlide();
+            }, slideDuration);
+        }
+
+        function nextSlide() {
+            const carousel = document.getElementById('story-carousel');
+            const images = carousel.querySelectorAll('.carousel-image');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const totalSlides = images.length;
+
+            // Remove active class from current slide and dot
+            images[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+
+            // Move to next slide
+            currentSlide = (currentSlide + 1) % totalSlides;
+
+            // Add active class to new slide and dot
+            images[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+
+            // Reset progress
+            progress = 0;
+            updateProgressBar();
+        }
+
+        function goToSlide(slideIndex) {
+            const carousel = document.getElementById('story-carousel');
+            const images = carousel.querySelectorAll('.carousel-image');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+
+            // Remove active class from current slide and dot
+            images[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+
+            // Set new slide
+            currentSlide = slideIndex;
+
+            // Add active class to new slide and dot
+            images[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+
+            // Restart the carousel from this slide
+            progress = 0;
+            updateProgressBar();
+            clearInterval(carouselInterval);
+            clearInterval(progressInterval);
+            startCarousel();
+        }
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById('story-progress');
+            progressBar.style.width = progress + '%';
+        }
+
+        // Initialize carousel when page loads
+        window.addEventListener('load', () => {
+            initCarousel();
+        });
+
+        // ===== EXIT INTENT POPUP =====
+        let exitIntentShown = false;
+        let lastScrollY = 0;
+        let maxScrollDepth = 0;
+        let inactivityTimer = null;
+        let userEngaged = false;
+
+        function closeExitIntent() {
+            const modal = document.getElementById('exit-intent-modal');
+            modal.classList.add('hidden');
+        }
+
+        function closeExitIntentAndDonate() {
+            closeExitIntent();
+            // Scroll to donation form
+            document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'});
+        }
+
+        function showExitIntent() {
+            if (!exitIntentShown) {
+                exitIntentShown = true;
+                const modal = document.getElementById('exit-intent-modal');
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+
+            // Only start timer if user is engaged (scrolled past 25%)
+            if (userEngaged && !exitIntentShown) {
+                inactivityTimer = setTimeout(() => {
+                    showExitIntent();
+                }, 45000); // 45 seconds
+            }
+        }
+
+        // Desktop: Detect exit intent (mouse leaving viewport from top)
+        document.addEventListener('mouseleave', (e) => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+            if (!exitIntentShown && e.clientY <= 0 && scrollPercent > 25) {
+                showExitIntent();
+            }
+        });
+
+        // Mobile: Back button detection
+        let isBackButtonPressed = false;
+        window.addEventListener('popstate', () => {
+            if (!exitIntentShown && !isBackButtonPressed) {
+                isBackButtonPressed = true;
+                showExitIntent();
+                // Re-push state so user doesn't leave if they click back again
+                history.pushState(null, null, location.href);
+            }
+        });
+
+        // Mobile: Scroll-up detection (after scrolling down 50%, scrolling up 10%+)
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const scrollPercent = (currentScrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+            // Track maximum scroll depth
+            if (scrollPercent > maxScrollDepth) {
+                maxScrollDepth = scrollPercent;
+            }
+
+            // Mark user as engaged if they've scrolled past 25%
+            if (scrollPercent > 25) {
+                userEngaged = true;
+            }
+
+            // Detect rapid scroll-up after being engaged (50%+ deep)
+            if (maxScrollDepth > 50 && currentScrollY < lastScrollY) {
+                const scrollUpPercent = ((lastScrollY - currentScrollY) / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+                // If scrolled up more than 10% quickly
+                if (scrollUpPercent > 10 && !exitIntentShown) {
+                    showExitIntent();
+                }
+            }
+
+            lastScrollY = currentScrollY;
+
+            // Reset inactivity timer on scroll
+            resetInactivityTimer();
+        });
+
+        // Reset inactivity timer on user interaction
+        ['mousedown', 'touchstart', 'keydown', 'mousemove', 'touchmove'].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, { passive: true });
+        });
+
+        // Start inactivity timer when page loads
+        resetInactivityTimer();
+
+        // Push initial state for back button detection
+        history.pushState(null, null, location.href);
+    </script>
 
 </body>
 </html>

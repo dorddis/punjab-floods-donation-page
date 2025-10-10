@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refactoring Test Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h1 { color: #333; }
+        .test { margin: 10px 0; padding: 10px; border-left: 4px solid #ddd; }
+        .success { border-left-color: #4CAF50; background: #f1f8f4; }
+        .error { border-left-color: #f44336; background: #ffebee; }
+        .info { border-left-color: #2196F3; background: #e3f2fd; }
+        .status { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Punjab Floods Donation Page - Refactoring Test</h1>
+
+        <h2>File Loading Tests</h2>
+        <div id="file-tests"></div>
+
+        <h2>JavaScript Function Tests</h2>
+        <div id="function-tests"></div>
+
+        <h2>CSS Classes Tests</h2>
+        <div id="css-tests"></div>
+
+        <h2>Summary</h2>
+        <div id="summary"></div>
+    </div>
+
+    <script>
+        const testResults = [];
+
+        // Function to add test result
+        function addTest(category, name, success, details) {
+            testResults.push({ category, name, success, details });
+            const container = document.getElementById(category);
+            if (container) {
+                const div = document.createElement('div');
+                div.className = `test ${success ? 'success' : 'error'}`;
+                div.innerHTML = `
+                    <span class="status">${success ? '✓' : '✗'}</span>
+                    <strong>${name}</strong>
+                    ${details ? `<br><small>${details}</small>` : ''}
+                `;
+                container.appendChild(div);
+            }
+        }
+
+        // Test file loading
+        async function testFileLoading() {
+            // Test CSS file
+            try {
+                const cssResponse = await fetch('assets/css/styles.css');
+                const cssText = await cssResponse.text();
+                addTest('file-tests', 'CSS file (styles.css)', cssResponse.ok,
+                    `${cssText.length} characters loaded`);
+            } catch (e) {
+                addTest('file-tests', 'CSS file (styles.css)', false, e.message);
+            }
+
+            // Test JS file
+            try {
+                const jsResponse = await fetch('assets/js/main.js');
+                const jsText = await jsResponse.text();
+                addTest('file-tests', 'JavaScript file (main.js)', jsResponse.ok,
+                    `${jsText.length} characters loaded`);
+            } catch (e) {
+                addTest('file-tests', 'JavaScript file (main.js)', false, e.message);
+            }
+
+            // Test Tailwind config
+            try {
+                const twResponse = await fetch('assets/js/tailwind.config.js');
+                const twText = await twResponse.text();
+                addTest('file-tests', 'Tailwind config file', twResponse.ok,
+                    `${twText.length} characters loaded`);
+            } catch (e) {
+                addTest('file-tests', 'Tailwind config file', false, e.message);
+            }
+
+            // Test index.html
+            try {
+                const htmlResponse = await fetch('index.html');
+                const htmlText = await htmlResponse.text();
+                const lineCount = htmlText.split('\n').length;
+                addTest('file-tests', 'index.html', htmlResponse.ok,
+                    `${lineCount} lines (reduced from 1,704)`);
+            } catch (e) {
+                addTest('file-tests', 'index.html', false, e.message);
+            }
+        }
+
+        // Test in iframe
+        async function testInIframe() {
+            return new Promise((resolve) => {
+                const iframe = document.createElement('iframe');
+                iframe.src = 'index.html';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+
+                iframe.onload = () => {
+                    const iframeWindow = iframe.contentWindow;
+
+                    // Test JavaScript functions
+                    const functions = [
+                        'selectAmount',
+                        'toggleCustomAmount',
+                        'updateAmountDisplay',
+                        'completeDonation',
+                        'animateNumber',
+                        'openVideoModal',
+                        'closeVideoModal',
+                        'shareOnFacebook',
+                        'shareOnTwitter',
+                        'shareOnLinkedIn',
+                        'copyPageLink',
+                        'toggleFAQ',
+                        'initCarousel',
+                        'goToSlide',
+                        'showExitIntent',
+                        'closeExitIntent'
+                    ];
+
+                    functions.forEach(funcName => {
+                        const exists = typeof iframeWindow[funcName] === 'function';
+                        addTest('function-tests', funcName, exists,
+                            exists ? 'Function is defined' : 'Function not found');
+                    });
+
+                    // Test CSS classes in iframe
+                    const iframeDoc = iframe.contentDocument;
+                    const cssClasses = [
+                        '.pulse-cta',
+                        '.fade-in-up',
+                        '.carousel-image',
+                        '.faq-content',
+                        '.glass-gradient-amber',
+                        '.glass-gradient-premium',
+                        '.custom-amount-collapsed'
+                    ];
+
+                    cssClasses.forEach(className => {
+                        const element = iframeDoc.querySelector(className);
+                        const exists = element !== null;
+                        addTest('css-tests', className, exists,
+                            exists ? 'CSS class found in DOM' : 'CSS class not found');
+                    });
+
+                    // Remove iframe
+                    document.body.removeChild(iframe);
+                    resolve();
+                };
+
+                setTimeout(() => {
+                    if (iframe.parentNode) {
+                        document.body.removeChild(iframe);
+                        resolve();
+                    }
+                }, 5000); // Timeout after 5 seconds
+            });
+        }
+
+        // Generate summary
+        function generateSummary() {
+            const total = testResults.length;
+            const passed = testResults.filter(t => t.success).length;
+            const failed = total - passed;
+
+            const summaryDiv = document.getElementById('summary');
+            summaryDiv.innerHTML = `
+                <div class="test info">
+                    <h3>Test Results Summary</h3>
+                    <p><strong>Total Tests:</strong> ${total}</p>
+                    <p><strong>Passed:</strong> <span style="color: #4CAF50;">${passed}</span></p>
+                    <p><strong>Failed:</strong> <span style="color: ${failed > 0 ? '#f44336' : '#4CAF50'};">${failed}</span></p>
+                    <p><strong>Success Rate:</strong> ${Math.round((passed/total) * 100)}%</p>
+                    ${failed === 0 ?
+                        '<p style="color: #4CAF50; font-weight: bold;">✓ All tests passed! Refactoring successful.</p>' :
+                        '<p style="color: #f44336; font-weight: bold;">⚠ Some tests failed. Please review.</p>'}
+                </div>
+            `;
+        }
+
+        // Run all tests
+        async function runTests() {
+            await testFileLoading();
+            await testInIframe();
+            generateSummary();
+        }
+
+        // Start tests
+        runTests();
+    </script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+/* Punjab Floods Donation Page - Main JavaScript */
+
+// ==================== Global Variables ====================
+let selectedAmountValue = 100;
+let stickyFooterShown = false;
+
+// Carousel variables
+let currentSlide = 0;
+let carouselInterval;
+let progressInterval;
+let progress = 0;
+const slideDuration = 4000; // 4 seconds per slide
+const progressUpdateInterval = 20; // Update progress every 20ms for smooth animation
+
+// Exit intent variables
+let exitIntentShown = false;
+let lastScrollY = 0;
+let maxScrollDepth = 0;
+let inactivityTimer = null;
+let userEngaged = false;
+let isBackButtonPressed = false;
+
+// Hero parallax
+let ticking = false;
+
+// ==================== Donation Functions ====================
+
+function selectAmount(amount) {
+    selectedAmountValue = amount;
+    updateAmountDisplay();
+
+    // Hide custom input if preset selected
+    const section = document.getElementById('custom-amount-section');
+    section.classList.remove('custom-amount-expanded');
+    section.classList.add('custom-amount-collapsed');
+
+    // Visual feedback with border and background
+    document.querySelectorAll('.donation-btn').forEach(btn => {
+        btn.classList.remove('border-saffron', 'bg-saffron/10');
+
+        // Restore original border colors based on card type (with semi-transparent borders for glassmorphic cards)
+        if (btn.classList.contains('glass-gradient-amber')) {
+            btn.classList.add('border-orange-500/40');
+        } else if (btn.classList.contains('glass-gradient-premium')) {
+            btn.classList.add('border-purple-500/40');
+        } else if (btn.textContent.includes('POPULAR')) {
+            // Keep POPULAR card border as is
+        } else {
+            btn.classList.add('border-gray-200');
+        }
+    });
+
+    const selectedBtn = event.target.closest('.donation-btn');
+
+    // Remove original border color before adding saffron
+    selectedBtn.classList.remove('border-gray-200', 'border-orange-500/40', 'border-purple-500/40');
+    selectedBtn.classList.add('border-saffron');
+
+    // Only add background color to non-gradient cards (preserve glassmorphic effect)
+    if (!selectedBtn.classList.contains('glass-gradient-amber') &&
+        !selectedBtn.classList.contains('glass-gradient-premium')) {
+        selectedBtn.classList.add('bg-saffron/10');
+    }
+
+    // Smooth scroll to form
+    document.getElementById('donation-form').scrollIntoView({behavior: 'smooth', block: 'center'});
+}
+
+function toggleCustomAmount() {
+    const section = document.getElementById('custom-amount-section');
+    const isCollapsed = section.classList.contains('custom-amount-collapsed');
+
+    if (isCollapsed) {
+        // Expand
+        section.classList.remove('custom-amount-collapsed');
+        section.classList.add('custom-amount-expanded');
+        // Focus input after animation starts
+        setTimeout(() => {
+            document.getElementById('custom-amount').focus();
+        }, 150);
+    } else {
+        // Collapse
+        section.classList.remove('custom-amount-expanded');
+        section.classList.add('custom-amount-collapsed');
+    }
+}
+
+function updateAmountDisplay() {
+    document.getElementById('selected-amount').textContent = `$${selectedAmountValue.toLocaleString('en-US')}`;
+    document.getElementById('matched-amount').textContent = `$${(selectedAmountValue * 2).toLocaleString('en-US')}`;
+}
+
+function completeDonation() {
+    const btn = event.target;
+    const originalHTML = btn.innerHTML;
+
+    // Show loading state
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> <span class="ml-2">Processing...</span>';
+
+    // Simulate processing
+    setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+
+        // Show success alert
+        alert(`Thank you for your donation of $${selectedAmountValue.toLocaleString('en-US')}!\n\nYou will receive:\n✓ Email receipt with 80G certificate\n✓ WhatsApp message with donation ID\n✓ Weekly construction updates\n\nWith matching, your impact is $${(selectedAmountValue * 2).toLocaleString('en-US')}!`);
+    }, 1500);
+}
+
+// ==================== Animation Functions ====================
+
+// Number Count-Up Animation
+function animateNumber(element, target, duration = 2000, suffix = '') {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
+
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target.toLocaleString('en-IN') + suffix;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current).toLocaleString('en-IN') + suffix;
+        }
+    }, 16);
+}
+
+// ==================== Video Modal Functions ====================
+
+function openVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const video = document.getElementById('flood-video');
+    modal.classList.remove('hidden');
+    modal.classList.add('modal-fade-in');
+    // Small delay to ensure modal is visible before playing
+    setTimeout(() => {
+        video.play().catch(err => {
+            console.log('Video autoplay prevented:', err);
+            // This is normal - browser blocks autoplay, user will click play button
+        });
+    }, 100);
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const video = document.getElementById('flood-video');
+    video.pause();
+    video.currentTime = 0; // Reset to beginning
+    modal.classList.add('hidden');
+    modal.classList.remove('modal-fade-in');
+}
+
+// ==================== Social Media Sharing Functions ====================
+
+function shareOnFacebook() {
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+}
+
+function shareOnTwitter() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent('Help rebuild Punjab - 384,000 people need homes after devastating floods. Donations matched 2x! 🏠');
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
+}
+
+function shareOnLinkedIn() {
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+}
+
+function copyPageLink() {
+    const url = window.location.href;
+
+    // Try to use the modern clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+            showCopySuccess();
+        }).catch(() => {
+            // Fallback for older browsers
+            fallbackCopyToClipboard(url);
+        });
+    } else {
+        // Fallback for older browsers
+        fallbackCopyToClipboard(url);
+    }
+}
+
+function fallbackCopyToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-9999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        document.execCommand('copy');
+        showCopySuccess();
+    } catch (err) {
+        alert('Failed to copy link. Please copy manually: ' + text);
+    }
+
+    document.body.removeChild(textArea);
+}
+
+function showCopySuccess() {
+    const btn = document.getElementById('copy-link-text');
+    const originalText = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.parentElement.classList.add('border-green-600', 'bg-green-50');
+
+    setTimeout(() => {
+        btn.textContent = originalText;
+        btn.parentElement.classList.remove('border-green-600', 'bg-green-50');
+    }, 2000);
+}
+
+// ==================== FAQ Accordion ====================
+
+function toggleFAQ(faqNumber) {
+    const content = document.getElementById(`faq-content-${faqNumber}`);
+    const icon = document.getElementById(`faq-icon-${faqNumber}`);
+
+    // Toggle the clicked FAQ with smooth animation
+    if (content.classList.contains('open')) {
+        // Closing: set max-height to current scrollHeight, then animate to 0
+        const currentHeight = content.scrollHeight;
+        content.style.maxHeight = currentHeight + 'px';
+
+        // Force reflow to ensure the height is set before transitioning
+        content.offsetHeight;
+
+        content.style.maxHeight = '0';
+        content.classList.remove('open');
+        icon.style.transform = 'rotate(0deg)';
+    } else {
+        // Opening: set max-height to scrollHeight (includes all padding)
+        content.classList.add('open');
+        const fullHeight = content.scrollHeight;
+        content.style.maxHeight = fullHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+    }
+}
+
+// ==================== Image Carousel ====================
+
+function initCarousel() {
+    const carousel = document.getElementById('story-carousel');
+    if (!carousel) return; // Exit if carousel not found
+
+    const images = carousel.querySelectorAll('.carousel-image');
+    const totalSlides = images.length;
+
+    // Start the carousel
+    startCarousel();
+
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => {
+        clearInterval(carouselInterval);
+        clearInterval(progressInterval);
+    });
+
+    // Resume on mouse leave
+    carousel.addEventListener('mouseleave', () => {
+        startCarousel();
+    });
+}
+
+function startCarousel() {
+    // Reset and start progress bar
+    progress = 0;
+    updateProgressBar();
+
+    // Clear any existing intervals
+    clearInterval(carouselInterval);
+    clearInterval(progressInterval);
+
+    // Update progress bar smoothly
+    progressInterval = setInterval(() => {
+        progress += (progressUpdateInterval / slideDuration) * 100;
+        if (progress >= 100) {
+            progress = 100;
+        }
+        updateProgressBar();
+    }, progressUpdateInterval);
+
+    // Change slide after duration
+    carouselInterval = setInterval(() => {
+        nextSlide();
+    }, slideDuration);
+}
+
+function nextSlide() {
+    const carousel = document.getElementById('story-carousel');
+    if (!carousel) return;
+
+    const images = carousel.querySelectorAll('.carousel-image');
+    const dots = carousel.querySelectorAll('.carousel-dot');
+    const totalSlides = images.length;
+
+    // Remove active class from current slide and dot
+    images[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+
+    // Move to next slide
+    currentSlide = (currentSlide + 1) % totalSlides;
+
+    // Add active class to new slide and dot
+    images[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+
+    // Reset progress
+    progress = 0;
+    updateProgressBar();
+}
+
+function goToSlide(slideIndex) {
+    const carousel = document.getElementById('story-carousel');
+    if (!carousel) return;
+
+    const images = carousel.querySelectorAll('.carousel-image');
+    const dots = carousel.querySelectorAll('.carousel-dot');
+
+    // Remove active class from current slide and dot
+    images[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+
+    // Set new slide
+    currentSlide = slideIndex;
+
+    // Add active class to new slide and dot
+    images[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+
+    // Restart the carousel from this slide
+    progress = 0;
+    updateProgressBar();
+    clearInterval(carouselInterval);
+    clearInterval(progressInterval);
+    startCarousel();
+}
+
+function updateProgressBar() {
+    const progressBar = document.getElementById('story-progress');
+    if (progressBar) {
+        progressBar.style.width = progress + '%';
+    }
+}
+
+// ==================== Exit Intent Popup ====================
+
+function closeExitIntent() {
+    const modal = document.getElementById('exit-intent-modal');
+    modal.classList.add('hidden');
+}
+
+function closeExitIntentAndDonate() {
+    closeExitIntent();
+    // Scroll to donation form
+    document.getElementById('donation-form').scrollIntoView({behavior: 'smooth'});
+}
+
+function showExitIntent() {
+    if (!exitIntentShown) {
+        exitIntentShown = true;
+        const modal = document.getElementById('exit-intent-modal');
+        modal.classList.remove('hidden');
+    }
+}
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+
+    // Only start timer if user is engaged (scrolled past 25%)
+    if (userEngaged && !exitIntentShown) {
+        inactivityTimer = setTimeout(() => {
+            showExitIntent();
+        }, 45000); // 45 seconds
+    }
+}
+
+// ==================== Event Listeners & Initialization ====================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize amount display
+    updateAmountDisplay();
+
+    // Update amount when custom input changes
+    const customAmountInput = document.getElementById('custom-amount');
+    if (customAmountInput) {
+        customAmountInput.addEventListener('input', (e) => {
+            const value = parseInt(e.target.value) || 0;
+            if (value > 0) {
+                selectedAmountValue = value;
+                updateAmountDisplay();
+            }
+        });
+    }
+
+    // Observe and animate numbers when they enter viewport
+    const numberObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.animated) {
+                entry.target.dataset.animated = 'true';
+                const target = parseInt(entry.target.dataset.target);
+                const suffix = entry.target.dataset.suffix || '';
+                animateNumber(entry.target, target, 2000, suffix);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    // Apply to stat numbers
+    document.querySelectorAll('[data-countup]').forEach(el => {
+        numberObserver.observe(el);
+    });
+
+    // Scroll-Triggered Fade-In Animations
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // Apply to elements that should fade in
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        fadeObserver.observe(el);
+    });
+
+    // Close video modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('video-modal');
+            if (modal && !modal.classList.contains('hidden')) {
+                closeVideoModal();
+            }
+        }
+    });
+
+    // Desktop: Detect exit intent (mouse leaving viewport from top)
+    document.addEventListener('mouseleave', (e) => {
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+        if (!exitIntentShown && e.clientY <= 0 && scrollPercent > 25) {
+            showExitIntent();
+        }
+    });
+
+    // Mobile: Back button detection
+    window.addEventListener('popstate', () => {
+        if (!exitIntentShown && !isBackButtonPressed) {
+            isBackButtonPressed = true;
+            showExitIntent();
+            // Re-push state so user doesn't leave if they click back again
+            history.pushState(null, null, location.href);
+        }
+    });
+
+    // Reset inactivity timer on user interaction
+    ['mousedown', 'touchstart', 'keydown', 'mousemove', 'touchmove'].forEach(event => {
+        document.addEventListener(event, resetInactivityTimer, { passive: true });
+    });
+
+    // Start inactivity timer when page loads
+    resetInactivityTimer();
+
+    // Push initial state for back button detection
+    history.pushState(null, null, location.href);
+});
+
+// Window scroll events
+window.addEventListener('scroll', () => {
+    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    const stickyFooter = document.getElementById('sticky-footer');
+
+    // Show sticky footer after scrolling 50% (with slide-up animation)
+    if (scrollPercent > 50 && window.innerWidth < 768) {
+        if (!stickyFooterShown && stickyFooter) {
+            stickyFooter.classList.remove('hidden');
+            stickyFooter.classList.add('slide-up');
+            stickyFooterShown = true;
+        }
+    } else {
+        if (stickyFooterShown && stickyFooter) {
+            stickyFooter.classList.add('hidden');
+            stickyFooter.classList.remove('slide-up');
+            stickyFooterShown = false;
+        }
+    }
+
+    // Hero Parallax Effect
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const hero = document.querySelector('.hero-background');
+            if (hero) {
+                const scrolled = window.pageYOffset;
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            ticking = false;
+        });
+        ticking = true;
+    }
+
+    // Exit Intent scroll tracking
+    const currentScrollY = window.scrollY;
+
+    // Track maximum scroll depth
+    if (scrollPercent > maxScrollDepth) {
+        maxScrollDepth = scrollPercent;
+    }
+
+    // Mark user as engaged if they've scrolled past 25%
+    if (scrollPercent > 25) {
+        userEngaged = true;
+    }
+
+    // Detect rapid scroll-up after being engaged (50%+ deep)
+    if (maxScrollDepth > 50 && currentScrollY < lastScrollY) {
+        const scrollUpPercent = ((lastScrollY - currentScrollY) / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+        // If scrolled up more than 10% quickly
+        if (scrollUpPercent > 10 && !exitIntentShown) {
+            showExitIntent();
+        }
+    }
+
+    lastScrollY = currentScrollY;
+
+    // Reset inactivity timer on scroll
+    resetInactivityTimer();
+});
+
+// Initialize carousel when page loads
+window.addEventListener('load', () => {
+    initCarousel();
+});
