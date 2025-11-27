@@ -1,7 +1,7 @@
-/* Punjab Floods Donation Page - Main JavaScript */
+/* Panjab Floods Donation Page - Main JavaScript */
 
 // ==================== Global Variables ====================
-let selectedAmountValue = 100;
+let selectedAmountValue = 250; // Default to $250 (POPULAR option)
 let stickyFooterShown = false;
 
 // Carousel variables
@@ -22,6 +22,42 @@ let isBackButtonPressed = false;
 
 // Hero parallax
 let ticking = false;
+
+// ==================== Countdown Timer ====================
+
+function updateCountdown() {
+    const countdownElement = document.getElementById('countdown-timer');
+    if (!countdownElement) return;
+
+    // Target: December 31, 2025 at 23:59:59 local time
+    const targetDate = new Date('2025-12-31T23:59:59');
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+        countdownElement.textContent = 'Last chance!';
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    if (days > 0) {
+        countdownElement.textContent = `${days}d ${hours}h ${minutes}m left`;
+    } else if (hours > 0) {
+        countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s left`;
+    } else {
+        countdownElement.textContent = `${minutes}m ${seconds}s left`;
+    }
+}
+
+// Start countdown on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+});
 
 // ==================== Donation Functions ====================
 
@@ -538,3 +574,123 @@ window.addEventListener('scroll', () => {
 window.addEventListener('load', () => {
     initCarousel();
 });
+
+// ==================== Keela Embed Iframe Load Handler ====================
+
+(function initKeelaEmbed() {
+    const iframe = document.querySelector('.keela-embed-form iframe');
+    const loader = document.querySelector('.keela-loading');
+
+    if (!iframe || !loader) return;
+
+    iframe.addEventListener('load', function() {
+        iframe.classList.remove('keela-hidden');
+        loader.style.display = 'none';
+    });
+
+    // Fallback timeout in case load event doesn't fire
+    setTimeout(() => {
+        iframe.classList.remove('keela-hidden');
+        loader.style.display = 'none';
+    }, 5000);
+})();
+
+// ==================== Horizontal Gallery Auto-Scroll & Drag ====================
+
+(function initGalleryScroll() {
+    const gallery = document.getElementById('image-gallery');
+    if (!gallery) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let autoScrollInterval;
+    let isPaused = false;
+    const scrollSpeed = 1; // pixels per frame
+    const scrollDirection = 1; // 1 = right, -1 = left
+
+    // Auto-scroll function
+    function startAutoScroll() {
+        if (autoScrollInterval) return;
+
+        autoScrollInterval = setInterval(() => {
+            if (isPaused || isDown) return;
+
+            gallery.scrollLeft += scrollSpeed * scrollDirection;
+
+            // Loop back to start when reaching end
+            if (gallery.scrollLeft >= gallery.scrollWidth - gallery.clientWidth) {
+                gallery.scrollLeft = 0;
+            }
+        }, 30); // ~33fps for smooth scrolling
+    }
+
+    function stopAutoScroll() {
+        if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+        }
+    }
+
+    // Pause on hover/touch
+    gallery.addEventListener('mouseenter', () => { isPaused = true; });
+    gallery.addEventListener('mouseleave', () => {
+        isPaused = false;
+        isDown = false;
+        gallery.style.cursor = 'grab';
+    });
+
+    // Drag functionality
+    gallery.addEventListener('mousedown', (e) => {
+        isDown = true;
+        gallery.style.cursor = 'grabbing';
+        startX = e.pageX - gallery.offsetLeft;
+        scrollLeft = gallery.scrollLeft;
+    });
+
+    gallery.addEventListener('mouseup', () => {
+        isDown = false;
+        gallery.style.cursor = 'grab';
+    });
+
+    gallery.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - gallery.offsetLeft;
+        const walk = (x - startX) * 2;
+        gallery.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchScrollLeft = 0;
+
+    gallery.addEventListener('touchstart', (e) => {
+        isPaused = true;
+        touchStartX = e.touches[0].pageX;
+        touchScrollLeft = gallery.scrollLeft;
+    }, { passive: true });
+
+    gallery.addEventListener('touchmove', (e) => {
+        const touchX = e.touches[0].pageX;
+        const walk = (touchStartX - touchX) * 1.5;
+        gallery.scrollLeft = touchScrollLeft + walk;
+    }, { passive: true });
+
+    gallery.addEventListener('touchend', () => {
+        setTimeout(() => { isPaused = false; }, 2000); // Resume after 2s
+    }, { passive: true });
+
+    // Start auto-scroll when gallery is in view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startAutoScroll();
+            } else {
+                stopAutoScroll();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(gallery);
+})();
