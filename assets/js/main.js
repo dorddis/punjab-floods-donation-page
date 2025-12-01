@@ -14,11 +14,6 @@ const progressUpdateInterval = 20; // Update progress every 20ms for smooth anim
 
 // Exit intent variables
 let exitIntentShown = false;
-let lastScrollY = 0;
-let maxScrollDepth = 0;
-let inactivityTimer = null;
-let userEngaged = false;
-let isBackButtonPressed = false;
 
 // Hero parallax
 let ticking = false;
@@ -390,7 +385,11 @@ function updateProgressBar() {
 
 function closeExitIntent() {
     const modal = document.getElementById('exit-intent-modal');
-    modal.classList.add('hidden');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex', 'md:flex');
+        modal.style.display = 'none';
+    }
 }
 
 function closeExitIntentAndDonate() {
@@ -403,18 +402,11 @@ function showExitIntent() {
     if (!exitIntentShown) {
         exitIntentShown = true;
         const modal = document.getElementById('exit-intent-modal');
-        modal.classList.remove('hidden');
-    }
-}
-
-function resetInactivityTimer() {
-    clearTimeout(inactivityTimer);
-
-    // Only start timer if user is engaged (scrolled past 25%)
-    if (userEngaged && !exitIntentShown) {
-        inactivityTimer = setTimeout(() => {
-            showExitIntent();
-        }, 45000); // 45 seconds
+        if (modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            modal.style.display = 'flex';
+        }
     }
 }
 
@@ -477,35 +469,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Desktop: Detect exit intent (mouse leaving viewport from top)
+    // Desktop ONLY: Detect exit intent when mouse leaves viewport from top
+    // DISABLED - Not needed as of now
+    /*
     document.addEventListener('mouseleave', (e) => {
-        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-
-        if (!exitIntentShown && e.clientY <= 0 && scrollPercent > 25) {
+        // Only trigger on desktop (768px+) and if mouse is leaving from the top
+        if (!exitIntentShown && e.clientY <= 0 && window.innerWidth >= 768) {
             showExitIntent();
         }
     });
-
-    // Mobile: Back button detection
-    window.addEventListener('popstate', () => {
-        if (!exitIntentShown && !isBackButtonPressed) {
-            isBackButtonPressed = true;
-            showExitIntent();
-            // Re-push state so user doesn't leave if they click back again
-            history.pushState(null, null, location.href);
-        }
-    });
-
-    // Reset inactivity timer on user interaction
-    ['mousedown', 'touchstart', 'keydown', 'mousemove', 'touchmove'].forEach(event => {
-        document.addEventListener(event, resetInactivityTimer, { passive: true });
-    });
-
-    // Start inactivity timer when page loads
-    resetInactivityTimer();
-
-    // Push initial state for back button detection
-    history.pushState(null, null, location.href);
+    */
 });
 
 // Window scroll events
@@ -540,34 +513,6 @@ window.addEventListener('scroll', () => {
         });
         ticking = true;
     }
-
-    // Exit Intent scroll tracking
-    const currentScrollY = window.scrollY;
-
-    // Track maximum scroll depth
-    if (scrollPercent > maxScrollDepth) {
-        maxScrollDepth = scrollPercent;
-    }
-
-    // Mark user as engaged if they've scrolled past 25%
-    if (scrollPercent > 25) {
-        userEngaged = true;
-    }
-
-    // Detect rapid scroll-up after being engaged (50%+ deep)
-    if (maxScrollDepth > 50 && currentScrollY < lastScrollY) {
-        const scrollUpPercent = ((lastScrollY - currentScrollY) / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-
-        // If scrolled up more than 10% quickly
-        if (scrollUpPercent > 10 && !exitIntentShown) {
-            showExitIntent();
-        }
-    }
-
-    lastScrollY = currentScrollY;
-
-    // Reset inactivity timer on scroll
-    resetInactivityTimer();
 });
 
 // Initialize carousel when page loads
@@ -609,6 +554,18 @@ window.addEventListener('load', () => {
     const scrollSpeed = 1; // pixels per frame
     const scrollDirection = 1; // 1 = right, -1 = left
 
+    // Check and reset scroll position for seamless loop
+    function checkAndResetScroll() {
+        const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+        const halfScroll = maxScroll / 2;
+
+        if (gallery.scrollLeft >= halfScroll) {
+            gallery.scrollLeft = gallery.scrollLeft - halfScroll;
+        } else if (gallery.scrollLeft < 0) {
+            gallery.scrollLeft = halfScroll + gallery.scrollLeft;
+        }
+    }
+
     // Auto-scroll function
     function startAutoScroll() {
         if (autoScrollInterval) return;
@@ -618,8 +575,11 @@ window.addEventListener('load', () => {
 
             gallery.scrollLeft += scrollSpeed * scrollDirection;
 
-            // Loop back to start when reaching end
-            if (gallery.scrollLeft >= gallery.scrollWidth - gallery.clientWidth) {
+            // Seamless infinite loop: reset to beginning when halfway through (since images are duplicated)
+            const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+            const halfScroll = maxScroll / 2;
+
+            if (gallery.scrollLeft >= halfScroll) {
                 gallery.scrollLeft = 0;
             }
         }, 30); // ~33fps for smooth scrolling
@@ -651,6 +611,7 @@ window.addEventListener('load', () => {
     gallery.addEventListener('mouseup', () => {
         isDown = false;
         gallery.style.cursor = 'grab';
+        checkAndResetScroll();
     });
 
     gallery.addEventListener('mousemove', (e) => {
@@ -678,6 +639,7 @@ window.addEventListener('load', () => {
     }, { passive: true });
 
     gallery.addEventListener('touchend', () => {
+        checkAndResetScroll();
         setTimeout(() => { isPaused = false; }, 2000); // Resume after 2s
     }, { passive: true });
 
